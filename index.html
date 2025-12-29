@@ -29,12 +29,14 @@
             border-left: 8px solid;
             padding-left: 1rem;
         }
-        /* 这里的 CSS 已经优化，支持直接插入背景图 */
+        
+        /* Updated Image Slot Styling */
         .big-image-slot {
             width: 100%;
-            height: 300px;
+            height: 450px; /* Increased height for better visibility */
             background: #f1f5f9;
-            background-size: cover;
+            background-size: contain; /* Shows the ENTIRE image */
+            background-repeat: no-repeat;
             background-position: center;
             border: 3px dashed #cbd5e1;
             border-radius: 24px;
@@ -46,17 +48,44 @@
             color: #94a3b8;
             overflow: hidden;
             position: relative;
+            cursor: zoom-in; /* Indicates it can be expanded */
+            transition: all 0.3s ease;
+        }
+        .big-image-slot:hover {
+            border-color: #10b981;
+            background-color: #f8fafc;
         }
         .image-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            padding: 24px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 30px 24px 20px 24px;
             color: white;
             text-align: left;
+            pointer-events: none; /* Allows click to pass through to the slot */
         }
+
+        /* Lightbox/Expand Styling */
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        #lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            border-radius: 8px;
+        }
+
         .data-table th {
             background-color: #f1f5f9;
             color: #475569;
@@ -70,6 +99,10 @@
     </style>
 </head>
 <body class="text-gray-800">
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="lightbox-img" src="" alt="Fullscreen View">
+    </div>
 
     <nav class="sticky top-0 z-50 bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,21 +128,18 @@
 
     <main class="max-w-7xl mx-auto px-4 py-10">
 
-        <!-- 1. 陆地地貌综合区 -->
         <section id="terrestrial" class="mb-16">
             <div class="section-header border-emerald-600 mb-6">
                 <h2 class="text-2xl font-bold text-emerald-900">陆地地貌与景观 <span class="text-gray-400 font-light ml-2">Natural Landforms</span></h2>
-                <p class="text-gray-600 text-sm mt-1">从深邃峡谷到孤立丘陵的地貌解析 / Analysis of landforms.</p>
+                <p class="text-gray-600 text-sm mt-1">从深邃峡谷到孤立丘陵的地貌解析 / Click image to expand.</p>
             </div>
 
-            <!-- FIRST SLOT: land.png -->
-            <div class="big-image-slot" style="background-image: url('land.png');">
+            <div class="big-image-slot" style="background-image: url('land.png');" onclick="openLightbox('land.png')">
                 <div class="image-overlay">
                     <h3 class="text-2xl font-bold mb-1">陆地景观全景 / Terrestrial Panorama</h3>
-                    <p class="text-sm opacity-90 font-light tracking-wide">展示地球表面的复杂褶皱与宏伟结构</p>
+                    <p class="text-sm opacity-90 font-light tracking-wide">🔍 点击查看完整高清大图 / Click to expand full view</p>
                 </div>
             </div>
-
 
             <div class="glossary-grid mb-12">
                 <script>
@@ -199,18 +229,16 @@
             </div>
         </section>
 
-        <!-- 2. 核心水体区 -->
         <section id="water" class="mb-16">
             <div class="section-header border-blue-600 mb-6">
                 <h2 class="text-2xl font-bold text-blue-900">核心水体词汇 <span class="text-gray-400 font-light ml-2">Core Hydrology Terms</span></h2>
-                <p class="text-gray-600 text-sm mt-1">最稳定、高频的水体词汇对比 / Stable water terminology.</p>
+                <p class="text-gray-600 text-sm mt-1">最稳定、高频的水体词汇对比 / Click image to expand.</p>
             </div>
 
-            <!-- SECOND SLOT: water.png -->
-            <div class="big-image-slot" style="background-image: url('water.png');">
+            <div class="big-image-slot" style="background-image: url('water.png');" onclick="openLightbox('water.png')">
                 <div class="image-overlay">
                     <h3 class="text-2xl font-bold mb-1">水文生态展示 / Hydrological Display</h3>
-                    <p class="text-sm opacity-90 font-light tracking-wide">从涓涓细流到浩瀚汪洋的生命源泉</p>
+                    <p class="text-sm opacity-90 font-light tracking-wide">🔍 点击查看完整高清大图 / Click to expand full view</p>
                 </div>
             </div>
 
@@ -256,7 +284,6 @@
             </div>
         </section>
 
-        <!-- 3. 微地形与动态流动 -->
         <section id="dynamics" class="mb-16">
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
@@ -303,7 +330,6 @@
             </div>
         </section>
 
-        <!-- 4. 边界与空间感 -->
         <section id="spatial">
             <div class="section-header border-amber-600 mb-6">
                 <h2 class="text-2xl font-bold text-amber-900">边界与空间语感 <span class="text-gray-400 font-light ml-2">Spatial Perception</span></h2>
@@ -339,9 +365,18 @@
     <footer class="bg-slate-900 text-slate-500 py-12 mt-20">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <p class="text-sm uppercase tracking-widest mb-2 font-bold">Bilingual Geography & Hydrology Encyclopedia</p>
-            <p class="text-xs opacity-60">地理学词汇双语互动指南 · v5.1 PNG Ready</p>
+            <p class="text-xs opacity-60">地理学词汇双语互动指南 · v5.1 Full View Enabled</p>
         </div>
     </footer>
+
+    <script>
+        function openLightbox(imgUrl) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgUrl;
+            lightbox.style.display = 'flex';
+        }
+    </script>
 
 </body>
 </html>
