@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地理地貌双语词典 - Geography & Landforms Lexicon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --earth-brown: #795548;
+            --water-blue: #0288d1;
+            --nature-green: #2e7d32;
+        }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8f9fa;
+        }
+        .serif-title {
+            font-family: 'Noto Serif SC', serif;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .section-header {
+            border-left: 8px solid;
+            padding-left: 1rem;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+        /* 预留的图案占位符样式 */
+        .icon-placeholder {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover .icon-placeholder {
+            border-style: solid;
+            background: white;
+            border-color: #10b981;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 导航栏 -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-emerald-700 serif-title">GeoLexicon</span>
+                    <span class="ml-2 text-gray-500 hidden md:inline">| 地理地貌双语百科</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#landforms" class="hover:text-emerald-600 font-medium">陆地地貌</a>
+                    <a href="#water-bodies" class="hover:text-blue-600 font-medium">水体分类</a>
+                    <a href="#spatial" class="hover:text-amber-600 font-medium">边界空间</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <header class="bg-emerald-900 text-white py-16 px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 serif-title">探索地球的肌理</h1>
+        <p class="text-xl opacity-90">Exploring Earth's Textures: A Bilingual Geography Lexicon</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+
+        <!-- 第一部分：自然地理词汇 -->
+        <section id="landforms" class="mb-20">
+            <div class="section-header border-emerald-600 mb-8">
+                <h2 class="text-3xl font-bold">自然地理词汇 <span class="text-gray-400 font-light ml-2">Natural Landforms</span></h2>
+                <p class="text-gray-600">从深邃峡谷到孤立丘陵的地貌解析</p>
+            </div>
+
+            <div class="glossary-grid">
+                <!-- 词汇卡片 -->
+                <script>
+                    const landforms = [
+                        {en: "geyser", zh: "间歇泉", breakdown: "[间歇](intermittent) + [泉](spring)", note: "时断时续地下涌水"},
+                        {en: "desert", zh: "沙漠", breakdown: "[沙](sand) + [漠](desolate land)", note: "荒凉的沙质之地"},
+                        {en: "tundra", zh: "冻原", breakdown: "[冻](frozen) + [原](plain)", note: "冻结的平原"},
+                        {en: "rainforest", zh: "雨林", breakdown: "[雨](rain) + [林](forest)", note: "降水丰沛的森林"},
+                        {en: "volcano", zh: "火山", breakdown: "[火](fire/magma) + [山](mountain)", note: "炽热岩浆喷发的山体"},
+                        {en: "canyon", zh: "峡谷", breakdown: "[峡](narrow) + [谷](valley)", note: "狭长而陡峭的谷地"},
+                        {en: "fjord", zh: "峡湾", breakdown: "[峡](narrow) + [湾](bay)", note: "狭长的海湾"},
+                        {en: "slope", zh: "山坡", breakdown: "[山](mountain) + [坡](slope)", note: "山体的倾斜面"},
+                        {en: "ridge", zh: "山脊", breakdown: "[山](mountain) + [脊](ridge/crest)", note: "背脊状的隆起线"},
+                        {en: "cliff", zh: "悬崖", breakdown: "[悬](overhanging) + [崖](cliff)", note: "悬空的陡壁"},
+                        {en: "butte", zh: "孤丘", breakdown: "[孤](isolated) + [丘](hill)", note: "孤立的台地丘"},
+                        {en: "karst cave", zh: "溶洞", breakdown: "[溶](dissolve) + [洞](cave)", note: "化学溶蚀形成的洞穴"},
+                        {en: "stone forest", zh: "石林", breakdown: "[石](stone) + [林](forest-like)", note: "岩石密集如林"},
+                        {en: "coast", zh: "海岸", breakdown: "[海](sea) + [岸](shore)", note: "海洋的边缘"},
+                        {en: "gulf", zh: "海湾", breakdown: "[海](sea) + [湾](bay)", note: "弯曲的水域"},
+                        {en: "continent", zh: "大洲", breakdown: "[洲](continent)", note: "大片陆地"},
+                        {en: "island", zh: "岛屿", breakdown: "[岛](island) + [屿](islet)", note: "四周环水的陆地"},
+                        {en: "peninsula", zh: "半岛", breakdown: "[半](half) + [岛](island)", note: "三面临水的陆地"},
+                        {en: "tunnel", zh: "隧道", breakdown: "[隧](subterranean) + [道](passage)", note: "地下或山中通路"}
+                    ];
+
+                    document.write(landforms.map(item => `
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 card-hover transition-all flex items-start gap-4">
+                            <!-- 左侧占位符 -->
+                            <div class="icon-placeholder text-gray-300 font-bold text-2xl">
+                                ${item.en.charAt(0).toUpperCase()}
+                            </div>
+                            <!-- 右侧内容 -->
+                            <div class="flex-1">
+                                <div class="flex justify-between items-center mb-1">
+                                    <h3 class="text-xl font-bold text-emerald-800">${item.zh}</h3>
+                                    <span class="text-xs font-mono text-gray-400 uppercase tracking-tighter">${item.en}</span>
+                                </div>
+                                <div class="text-xs text-emerald-600 mb-2 font-medium">${item.breakdown}</div>
+                                <p class="text-gray-600 text-sm leading-snug">${item.note}</p>
+                            </div>
+                        </div>
+                    `).join(''));
+                </script>
+            </div>
+        </section>
+
+        <!-- 第二部分：水体类随体词 -->
+        <section id="water-bodies" class="mb-20">
+            <div class="section-header border-blue-500 mb-8">
+                <h2 class="text-3xl font-bold text-blue-900">水体词及其随体词 <span class="text-gray-400 font-light ml-2">Hydrology & Water Terms</span></h2>
+                <p class="text-gray-600">从细微溪涧到浩瀚大洋的形态辨析</p>
+            </div>
+
+            <div class="overflow-x-auto bg-white rounded-xl shadow-lg border border-blue-50">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-blue-50">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-blue-700 uppercase tracking-wider">字/词</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-blue-700 uppercase tracking-wider">形象占位</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-blue-700 uppercase tracking-wider">常见搭配</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-blue-700 uppercase tracking-wider">形态/体量</th>
+                            <th class="px-6 py-4 text-left text-xs font-bold text-blue-700 uppercase tracking-wider">教学/语感备注</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <script>
+                            const waterTerms = [
+                                {word: "洼", combo: "水洼、低洼", size: "小、低陷", note: "强调“凹下去”，不一定常年有水"},
+                                {word: "塘", combo: "池塘、鱼塘", size: "小—中", note: "人工感较强"},
+                                {word: "川", combo: "山川、河川", size: "中—大、线性", note: "偏书面，用于整体地貌"},
+                                {word: "溪", combo: "溪水、溪流", size: "小、清浅", note: "山野感、自然感强"},
+                                {word: "涧", combo: "山涧、涧水", size: "小、狭深", note: "比“溪”更陡、更深"},
+                                {word: "潭", combo: "深潭、寒潭", size: "点状、深", note: "强调垂直深度"},
+                                {word: "泉", combo: "温泉、泉水", size: "点状、源头", note: "“出水点”的核心概念"},
+                                {word: "江", combo: "长江、江水", size: "大、干流", note: "比“河”更有等级感"},
+                                {word: "河", combo: "黄黄河、河流", size: "大", note: "最通用语"},
+                                {word: "湖", combo: "湖泊、淡水湖", size: "面状、内陆", note: "封闭的大水体"},
+                                {word: "洋", combo: "大洋、太平洋", size: "极大", note: "偏科学称呼，全球尺度"}
+                            ];
+
+                            document.write(waterTerms.map(row => `
+                                <tr class="hover:bg-blue-50/30 transition-colors">
+                                    <td class="px-6 py-4 whitespace-nowrap font-bold text-blue-600">${row.word}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="w-10 h-10 rounded bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-300 text-xs">占位</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-700">${row.combo}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row.size}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-600">${row.note}</td>
+                                </tr>
+                            `).join(''));
+                        </script>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 微地形水体 -->
+            <div class="mt-8 grid md:grid-cols-2 gap-6">
+                <div class="bg-indigo-50 p-6 rounded-xl">
+                    <h4 class="font-bold text-indigo-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.001 8.001 0 0117.748 8H12V2.252z"></path></svg>
+                        微地形与状态水体
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 bg-white/50 p-2 rounded">
+                            <div class="w-8 h-8 bg-white border border-indigo-100 rounded flex-shrink-0"></div>
+                            <span class="flex-1"><strong>沼 (Marsh)</strong>: 沼泽</span> 
+                            <span class="text-gray-500 text-xs">湿软、半陆半水</span>
+                        </li>
+                        <li class="flex items-center gap-3 bg-white/50 p-2 rounded">
+                            <div class="w-8 h-8 bg-white border border-indigo-100 rounded flex-shrink-0"></div>
+                            <span class="flex-1"><strong>井 (Well)</strong>: 水井</span> 
+                            <span class="text-gray-500 text-xs">垂直、点状人工</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-cyan-50 p-6 rounded-xl">
+                    <h4 class="font-bold text-cyan-900 mb-4 flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd"></path></svg>
+                        流动与周期
+                    </h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 bg-white/50 p-2 rounded">
+                            <div class="w-8 h-8 bg-white border border-cyan-100 rounded flex-shrink-0"></div>
+                            <span class="flex-1"><strong>流 (Flow)</strong>: 流域</span> 
+                            <span class="text-gray-500 text-xs">强调空间运动</span>
+                        </li>
+                        <li class="flex items-center gap-3 bg-white/50 p-2 rounded">
+                            <div class="w-8 h-8 bg-white border border-cyan-100 rounded flex-shrink-0"></div>
+                            <span class="flex-1"><strong>滩 (Beach)</strong>: 沙滩</span> 
+                            <span class="text-gray-500 text-xs">水陆交界平缓地</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三部分：空间感 -->
+        <section id="spatial">
+            <div class="section-header border-amber-500 mb-8">
+                <h2 class="text-3xl font-bold text-amber-900">边界与空间语感 <span class="text-gray-400 font-light ml-2">Spatial Perception</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-6 bg-amber-50 rounded-lg border border-amber-100 flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full mb-3 border border-amber-200"></div>
+                    <div class="text-2xl font-bold text-amber-800 mb-1">涯</div>
+                    <div class="text-xs text-amber-600">强调“极远的边界”</div>
+                </div>
+                <div class="text-center p-6 bg-amber-50 rounded-lg border border-amber-100 flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full mb-3 border border-amber-200"></div>
+                    <div class="text-2xl font-bold text-amber-800 mb-1">岸</div>
+                    <div class="text-xs text-amber-600">明确的固态边界</div>
+                </div>
+                <div class="text-center p-6 bg-amber-50 rounded-lg border border-amber-100 flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full mb-3 border border-amber-200"></div>
+                    <div class="text-2xl font-bold text-amber-800 mb-1">滨</div>
+                    <div class="text-xs text-amber-600">偏景观、书面语感</div>
+                </div>
+                <div class="text-center p-6 bg-amber-50 rounded-lg border border-amber-100 flex flex-col items-center">
+                    <div class="w-12 h-12 bg-white rounded-full mb-3 border border-amber-200"></div>
+                    <div class="text-2xl font-bold text-amber-800 mb-1">畔</div>
+                    <div class="text-xs text-amber-600">文雅且具叙述性</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="mb-4">双语地理地貌词典 - 教学与参考指南</p>
+            <div class="flex justify-center space-x-6 text-sm">
+                <span>[Landforms]</span>
+                <span>[Hydrology]</span>
+                <span>[Geography]</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
