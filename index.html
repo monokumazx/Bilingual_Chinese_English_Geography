@@ -73,6 +73,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .image-slot img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 1.5rem;
+            object-fit: contain;
+        }
+        .image-placeholder {
+            background: rgba(255,255,255,0.7);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 1rem;
         }
         .category-nav {
             display: flex;
@@ -205,7 +218,9 @@
         <div class="subtitle">🧩 中英对照 · 汉字拆解 · Chinese + Pinyin + English · 全年龄段</div>
 
         <div class="image-slot" id="categoryImageSlot">
-            <span>🖼️ <span id="imageLabel">全部地形与水 All Land & Water</span> — 图片位置 (PNG) </span>
+            <div class="image-placeholder">
+                🖼️ <span id="imageLabel">全部地形与水 All Land & Water</span> — 图片位置 (PNG)
+            </div>
         </div>
 
         <div class="category-nav" id="categoryNav">
@@ -358,10 +373,50 @@
                 "land-special": "🌋 特殊构造 Special Formations"
             };
 
+            // ========================================
+            // IMAGE PATHS - EDIT THESE TO MATCH YOUR FILES
+            // ========================================
+            const categoryImages = {
+                "all": "images/all-land-water.png",
+                "small-still": "images/small-still-water.png",
+                "lakes": "images/lakes.png",
+                "wetlands": "images/wetlands.png",
+                "mountain": "images/mountain-water.png",
+                "rivers": "images/rivers.png",
+                "fast-deep": "images/fast-deep-water.png",
+                "sea-coastal": "images/sea-coastal.png",
+                "land-water": "images/land-in-water.png",
+                "surface": "images/surface-motion.png",
+                "land-area": "images/land-areas.png",
+                "land-hill": "images/hills-mountains.png",
+                "land-erosion": "images/erosion-caves.png",
+                "land-special": "images/special-formations.png"
+            };
+
             let currentCategory = "all";
             const tableContainer = document.getElementById('dynamicTableContainer');
             const puzzleGallery = document.getElementById('puzzleGallery');
-            const imageLabel = document.getElementById('imageLabel');
+            const imageSlot = document.getElementById('categoryImageSlot');
+
+            function updateCategoryImage(cat) {
+                const imagePath = categoryImages[cat];
+                const label = categoryLabels[cat] || cat;
+                
+                if (imagePath) {
+                    imageSlot.innerHTML = `
+                        <img src="${imagePath}" 
+                             alt="${label}" 
+                             style="max-width:100%; max-height:400px; border-radius:1.5rem; object-fit:contain;"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class='image-placeholder'>🖼️ ${label} — 图片未找到 (Image not found)<br><small>请将图片放在: ${imagePath}</small></div>';">
+                    `;
+                } else {
+                    imageSlot.innerHTML = `
+                        <div class="image-placeholder">
+                            🖼️ ${label} — 图片位置 (PNG)
+                        </div>
+                    `;
+                }
+            }
 
             function buildDissection(dissect, fullChinese) {
                 if (!dissect || dissect.length === 0) return '';
@@ -416,11 +471,13 @@
                     e.currentTarget.classList.add('active');
                     const cat = e.currentTarget.dataset.category;
                     currentCategory = cat;
-                    imageLabel.textContent = categoryLabels[cat] || cat;
+                    updateCategoryImage(cat);
                     renderTable(cat);
                 });
             });
 
+            // Initial render
+            updateCategoryImage('all');
             renderTable('all');
             renderGallery();
         })();
