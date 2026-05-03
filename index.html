@@ -1,382 +1,527 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>地理地貌双语百科 - Geography & Landforms Encyclopedia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Noto+Serif+SC:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>🌍 地理 · Geography | Bilingual Land & Water</title>
     <style>
-        :root {
-            --earth-brown: #795548;
-            --water-blue: #0288d1;
-            --nature-green: #2e7d32;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         body {
-            font-family: 'Noto Sans SC', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #f8f9fa;
-        }
-        .serif-title {
-            font-family: 'Noto Serif SC', serif;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border-color: #10b981;
-        }
-        .section-header {
-            border-left: 8px solid;
-            padding-left: 1rem;
-        }
-        
-        /* Updated Image Slot Styling */
-        .big-image-slot {
-            width: 100%;
-            height: 450px; /* Increased height for better visibility */
-            background: #f1f5f9;
-            background-size: contain; /* Shows the ENTIRE image */
-            background-repeat: no-repeat;
-            background-position: center;
-            border: 3px dashed #cbd5e1;
-            border-radius: 24px;
+            background: #f0f7fb;
+            font-family: 'Segoe UI', 'Noto Sans', 'Helvetica Neue', system-ui, sans-serif;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-            color: #94a3b8;
-            overflow: hidden;
-            position: relative;
-            cursor: zoom-in; /* Indicates it can be expanded */
-            transition: all 0.3s ease;
+            color: #1e2b3c;
         }
-        .big-image-slot:hover {
-            border-color: #10b981;
-            background-color: #f8fafc;
+        .main-container {
+            max-width: 1400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(18px);
+            border-radius: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 100, 120, 0.25);
+            padding: 2rem 2rem 3rem;
+            border: 1px solid rgba(120, 180, 200, 0.4);
         }
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 30px 24px 20px 24px;
-            color: white;
-            text-align: left;
-            pointer-events: none; /* Allows click to pass through to the slot */
-        }
-
-        /* Lightbox/Expand Styling */
-        #lightbox {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            z-index: 9999;
-            justify-content: center;
+        h1 {
+            display: flex;
             align-items: center;
-            cursor: zoom-out;
-        }
-        #lightbox img {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
-            border-radius: 8px;
-        }
-
-        .data-table th {
-            background-color: #f1f5f9;
-            color: #475569;
+            gap: 0.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
+            color: #005f73;
+            margin-bottom: 0.3rem;
+            flex-wrap: wrap;
         }
-        .glossary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+        h1 span {
+            background: #e0f2f1;
+            padding: 0.2rem 1.2rem;
+            border-radius: 4rem;
+            font-size: 2rem;
+            color: #0a4b5c;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #2c6979;
+            margin-bottom: 2rem;
+            border-left: 6px solid #48cae4;
+            padding-left: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .image-slot {
+            background: #e3f2f9;
+            border: 2px dashed #48cae4;
+            border-radius: 2.5rem;
+            padding: 1.5rem 2rem;
+            margin: 0.5rem 0 2rem;
+            text-align: center;
+            color: #035b6b;
+            font-weight: 500;
+            font-size: 1.1rem;
+            background-image: radial-gradient(circle at 20px 20px, #bde0fe30 2px, transparent 2px);
+            background-size: 40px 40px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.8rem 0 1.5rem;
+            background: #e9f4fa;
+            padding: 0.6rem;
+            border-radius: 3rem;
+            justify-content: center;
+        }
+        .cat-btn {
+            background: white;
+            border: 1px solid #cfe3ef;
+            padding: 0.7rem 1.4rem;
+            border-radius: 2.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1e4a5f;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .cat-btn.active {
+            background: #0077b6;
+            color: white;
+            border-color: #005f8c;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 2rem;
+            background: #ffffffdd;
+            border: 1px solid #bde0fe;
+            margin: 1.8rem 0 2.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+        th {
+            background: #036666;
+            color: white;
+            padding: 1rem 1.2rem;
+            text-align: left;
+        }
+        td {
+            padding: 0.9rem 1.2rem;
+            border-bottom: 1px solid #cfe9f2;
+            background-color: #ffffffc9;
+            vertical-align: top;
+        }
+        .chinese-cell {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #003049;
+        }
+        .pinyin-sm {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: #2a6f7c;
+            display: block;
+            font-style: italic;
+        }
+        .english-name {
+            font-weight: 600;
+            color: #1e4a4f;
+            font-size: 1rem;
+        }
+        .puzzle-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .dissect-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.3rem 0.6rem;
+        }
+        .char-piece {
+            background: #fcefb4;
+            padding: 0.15rem 0.7rem;
+            border-radius: 12px;
+            font-weight: 700;
+            color: #4a3f1f;
+        }
+        .plus-sign {
+            font-weight: bold;
+            color: #b5838d;
+        }
+        .arrow-sign {
+            color: #6b705c;
+            margin: 0 0.2rem;
+            font-weight: bold;
+        }
+        .result-word {
+            background: #b7e4c7;
+            padding: 0.15rem 0.9rem;
+            border-radius: 15px;
+            font-weight: 700;
+            color: #1b4332;
+        }
+        .en-line {
+            color: #2d4a4a;
+            font-size: 0.9rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+            color: #094c5c;
+        }
+        hr {
+            border: 1px dashed #99c2d6;
+            margin: 1.8rem 0 1rem;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            color: #527a8c;
         }
     </style>
 </head>
-<body class="text-gray-800">
+<body>
+    <div class="main-container">
+        <h1>🌍 地理 Geography <span>💧🌊 水文·陆地</span></h1>
+        <div class="subtitle">🧩 中英对照 · 汉字拆解 · Chinese + Pinyin + English · 全年龄段</div>
 
-    <div id="lightbox" onclick="this.style.display='none'">
-        <img id="lightbox-img" src="" alt="Fullscreen View">
+        <div class="image-slot" id="categoryImageSlot">
+            <span>🖼️ <span id="imageLabel">全部地形与水</span> — 图片位置 (PNG) </span>
+        </div>
+
+        <div class="category-nav" id="categoryNav">
+            <button class="cat-btn active" data-category="all">🌐 All</button>
+            <button class="cat-btn" data-category="small-still">💧 Small Still</button>
+            <button class="cat-btn" data-category="lakes">🏞️ Lakes</button>
+            <button class="cat-btn" data-category="wetlands">🌿 Wetlands</button>
+            <button class="cat-btn" data-category="mountain">🏔️ Mountain Water</button>
+            <button class="cat-btn" data-category="rivers">🌊 Rivers</button>
+            <button class="cat-btn" data-category="fast-deep">⚡ Fast/Deep</button>
+            <button class="cat-btn" data-category="sea-coastal">🌊 Sea&Coast</button>
+            <button class="cat-btn" data-category="land-water">🏝️ Land in Water</button>
+            <button class="cat-btn" data-category="surface">🌬️ Surface Motion</button>
+            <button class="cat-btn" data-category="land-area">🗺️ Land Areas</button>
+            <button class="cat-btn" data-category="land-hill">⛰️ Hills/Mountains</button>
+            <button class="cat-btn" data-category="land-erosion">🏜️ Erosion/Caves</button>
+            <button class="cat-btn" data-category="land-special">🌋 Special</button>
+        </div>
+
+        <div id="dynamicTableContainer"></div>
+
+        <hr>
+        <div class="section-title">🧩 汉字拆解 · Character Puzzle Gallery</div>
+        <div id="puzzleGallery" style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 1rem;"></div>
+
+        <footer>
+            🌍 Bilingual Geography · 盐沼地 (yán zhǎo dì) · 瀑布 (pù bù) · 三角洲 (sān jiǎo zhōu) · 适合所有年龄 for all ages
+        </footer>
     </div>
 
-    <nav class="sticky top-0 z-50 bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <span class="text-2xl font-bold text-emerald-800 serif-title">GeoLexicon</span>
-                    <span class="ml-2 text-gray-500 hidden md:inline">| 地理地貌百科</span>
-                </div>
-                <div class="hidden md:flex space-x-6 text-sm">
-                    <a href="#terrestrial" class="hover:text-emerald-600 font-medium">陆地地貌</a>
-                    <a href="#water" class="hover:text-blue-600 font-medium">水体形态</a>
-                    <a href="#dynamics" class="hover:text-cyan-600 font-medium">流动/微地形</a>
-                    <a href="#spatial" class="hover:text-amber-600 font-medium">空间边界</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <header class="bg-emerald-950 text-white py-12 px-4 text-center">
-        <h1 class="text-4xl font-bold mb-3 serif-title">探索地球的肌理</h1>
-        <p class="text-lg opacity-80 font-light italic text-emerald-100">Exploring Earth's Textures: A Full Reintegrated Bilingual Lexicon</p>
-    </header>
-
-    <main class="max-w-7xl mx-auto px-4 py-10">
-
-        <section id="terrestrial" class="mb-16">
-            <div class="section-header border-emerald-600 mb-6">
-                <h2 class="text-2xl font-bold text-emerald-900">陆地地貌与景观 <span class="text-gray-400 font-light ml-2">Natural Landforms</span></h2>
-                <p class="text-gray-600 text-sm mt-1">从深邃峡谷到孤立丘陵的地貌解析 / Click image to expand.</p>
-            </div>
-
-            <div class="big-image-slot" style="background-image: url('land.png');" onclick="openLightbox('land.png')">
-                <div class="image-overlay">
-                    <h3 class="text-2xl font-bold mb-1">陆地景观全景 / Terrestrial Panorama</h3>
-                    <p class="text-sm opacity-90 font-light tracking-wide">🔍 点击查看完整高清大图 / Click to expand full view</p>
-                </div>
-            </div>
-
-            <div class="glossary-grid mb-12">
-                <script>
-                    const highlights = [
-                        {zh: "瀑布", en: "waterfall", breakdown: "[瀑] + [布]", note: "河水从陡坡跌落 / Water falling from a height."},
-                        {zh: "大洲", en: "continent", breakdown: "[洲]", note: "大片陆地 / Large continuous landmass."},
-                        {zh: "山口", en: "mountain pass", breakdown: "[山] + [口]", note: "山岭间的低矮通路 / Lower point or pass in a range."},
-                        {zh: "火山", en: "volcano", breakdown: "[火] + [山]", note: "炽热岩浆喷发的山体 / Mountain erupting fire and magma."},
-                        {zh: "溶洞", en: "karst cave", breakdown: "[溶] + [洞]", note: "化学溶蚀形成的洞穴 / Cave formed by chemical dissolution."},
-                        {zh: "半岛", en: "peninsula", breakdown: "[半] + [岛]", note: "三面临水的陆地 / Land surrounded by water on three sides."},
-                        {zh: "隧道", en: "tunnel", breakdown: "[隧] + [道]", note: "地下或山中通路 / Subterranean passage."}
-                    ];
-                    document.write(highlights.map(item => `
-                        <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 card-hover transition-all">
-                            <div class="flex justify-between items-start mb-1">
-                                <h3 class="text-lg font-bold text-emerald-800">${item.zh}</h3>
-                                <span class="text-xs font-mono text-emerald-600 font-bold uppercase">${item.en}</span>
-                            </div>
-                            <div class="text-[10px] text-emerald-500 mb-2 uppercase tracking-widest">${item.breakdown}</div>
-                            <p class="text-gray-600 text-xs leading-relaxed">${item.note}</p>
-                        </div>
-                    `).join(''));
-                </script>
-            </div>
-
-            <div class="overflow-hidden bg-white rounded-xl shadow border border-gray-200">
-                <table class="min-w-full divide-y divide-gray-200 data-table">
-                    <thead>
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs uppercase">地貌名称 (ZH/EN)</th>
-                            <th class="px-6 py-3 text-left text-xs uppercase">所属分类</th>
-                            <th class="px-6 py-3 text-left text-xs uppercase">双语说明 / Bilingual Insight</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100 text-sm">
-                        <script>
-                            const masterLandforms = [
-                                {zh: "大洲", en: "Continent", cat: "面状/区域", note: "大片连续陆地 / Large continuous landmass."},
-                                {zh: "平原", en: "Plain", cat: "面状/区域", note: "地势平坦、起伏小 / Flat, low-relief land."},
-                                {zh: "平地", en: "Flatland", cat: "面状/区域", note: "泛指平坦地面 / General term for level ground."},
-                                {zh: "高原", en: "Plateau", cat: "面状/区域", note: "海拔高但地形平坦 / Elevated flat land."},
-                                {zh: "台地", en: "Tableland", cat: "面状/区域", note: "边陡顶平的高地 / Flat-topped elevated land."},
-                                {zh: "盆地", en: "Basin", cat: "面状/区域", note: "四周高、中间低 / Low area surrounded by higher land."},
-                                {zh: "低地", en: "Lowland", cat: "面状/区域", note: "地势低平的地带 / Area of land lower than surroundings."},
-                                {zh: "沙漠", en: "Desert", cat: "面状/区域", note: "荒凉的沙质之地 / Arid land (Desolate sand)."},
-                                {zh: "冻原", en: "Tundra", cat: "面状/区域", note: "冻结的平原 / Frozen plain with permafrost."},
-                                {zh: "雨林", en: "Rainforest", cat: "区域(植被)", note: "降水丰沛的森林 / Dense forest with heavy rainfall."},
-                                {zh: "山地", en: "Mountains", cat: "丘状/起伏", note: "高大复杂地形 / High-elevation rugged land."},
-                                {zh: "山口", en: "Mountain Pass", cat: "丘状/起伏", note: "山岭间的交通孔道 / Navigable route through a range."},
-                                {zh: "山脊", en: "Ridge", cat: "丘状/起伏", note: "背脊状隆起线 / Long narrow crest or mountain ridge."},
-                                {zh: "山坡", en: "Slope", cat: "丘状/起伏", note: "山体倾斜面 / Inclined surface of a mountain."},
-                                {zh: "丘陵", en: "Hills", cat: "丘状/起伏", note: "低矮连绵起伏 / Gently rolling hills."},
-                                {zh: "孤丘", en: "Butte", cat: "丘状/起伏", note: "孤立的平顶丘 / Isolated flat-topped hill."},
-                                {zh: "火山", en: "Volcano", cat: "特殊/构造", note: "岩浆喷发的山体 / Mountain erupting fire and magma."},
-                                {zh: "瀑布", en: "Waterfall", cat: "侵蚀/切割", note: "河水从高处跌落 / Water falling from a steep drop."},
-                                {zh: "谷地", en: "Valley", cat: "侵蚀/切割", note: "山间长形低洼地 / Elongated depression between hills."},
-                                {zh: "河谷", en: "River Valley", cat: "侵蚀/切割", note: "河流流经的谷地 / Valley formed by flowing water."},
-                                {zh: "峡谷", en: "Canyon", cat: "侵蚀/切割", note: "狭长陡峭谷地 / Deep, narrow and steep valley."},
-                                {zh: "冲沟", en: "Gully", cat: "侵蚀/切割", note: "流水侵蚀形成的沟壑 / Trench worn by running water."},
-                                {zh: "峡湾", en: "Fjord", cat: "侵蚀/切割", note: "狭长的海湾 / Narrow and long sea inlet/bay."},
-                                {zh: "悬崖", en: "Cliff", cat: "侵蚀/切割", note: "垂直/悬空陡壁 / Steep rock face or overhanging wall."},
-                                {zh: "溶洞", en: "Karst Cave", cat: "侵蚀/岩溶", note: "化学溶蚀形成的洞穴 / Cave formed by chemical dissolution."},
-                                {zh: "石林", en: "Stone Forest", cat: "侵蚀/岩溶", note: "岩石密集如林 / Forest-like dense rock formations."},
-                                {zh: "冲积平原", en: "Alluvial Plain", cat: "沉积地貌", note: "河流冲积形成的平原 / Plain formed by river deposits."},
-                                {zh: "三角洲", en: "Delta", cat: "沉积地貌", note: "河口沉积地 / River mouth deposit."},
-                                {zh: "冲积扇", en: "Alluvial Fan", cat: "沉积地貌", note: "扇形沉积体 / Fan-shaped river deposit."},
-                                {zh: "沙洲", en: "Sandbar", cat: "沉积地貌", note: "水流沉积的沙堆 / Accumulation of sand by currents."},
-                                {zh: "沙丘", en: "Sand Dune", cat: "风成地貌", note: "风力堆积沙丘 / Wind-formed sand hill."},
-                                {zh: "冰川", en: "Glacier", cat: "冰成地貌", note: "流动的冰体 / Moving mass of ice."},
-                                {zh: "冰川谷", en: "Glacial Valley", cat: "冰成地貌", note: "冰川侵蚀形成的谷地 / Valley formed by glacial erosion."},
-                                {zh: "海岸", en: "Coast", cat: "边界/海洋", note: "海洋的边缘 / Edge of the sea."},
-                                {zh: "海湾", en: "Gulf / Bay", cat: "边界/海洋", note: "弯曲的水域 / Curved body of water or sea inlet."},
-                                {zh: "岛屿", en: "Island", cat: "空间/陆地", note: "四周环水的陆地 / Land surrounded by water."},
-                                {zh: "半岛", en: "Peninsula", cat: "空间/陆地", note: "三面临水的陆地 / Land surrounded by water on three sides."},
-                                {zh: "隧道", en: "Tunnel", cat: "人工构造", note: "地下或山中通路 / Subterranean passage."}
-                            ];
-                            document.write(masterLandforms.map(row => `
-                                <tr class="hover:bg-gray-50 transition-colors">
-                                    <td class="px-6 py-4 font-bold text-emerald-900">${row.zh} <span class="text-xs font-mono text-gray-400 font-normal ml-1">${row.en}</span></td>
-                                    <td class="px-6 py-4 text-xs text-gray-500 uppercase tracking-tighter">${row.cat}</td>
-                                    <td class="px-6 py-4 text-gray-600 leading-tight">${row.note}</td>
-                                </tr>
-                            `).join(''));
-                        </script>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section id="water" class="mb-16">
-            <div class="section-header border-blue-600 mb-6">
-                <h2 class="text-2xl font-bold text-blue-900">核心水体词汇 <span class="text-gray-400 font-light ml-2">Core Hydrology Terms</span></h2>
-                <p class="text-gray-600 text-sm mt-1">最稳定、高频的水体词汇对比 / Click image to expand.</p>
-            </div>
-
-            <div class="big-image-slot" style="background-image: url('water.png');" onclick="openLightbox('water.png')">
-                <div class="image-overlay">
-                    <h3 class="text-2xl font-bold mb-1">水文生态展示 / Hydrological Display</h3>
-                    <p class="text-sm opacity-90 font-light tracking-wide">🔍 点击查看完整高清大图 / Click to expand full view</p>
-                </div>
-            </div>
-
-            <div class="overflow-x-auto bg-white rounded-xl shadow border border-blue-100">
-                <table class="min-w-full divide-y divide-gray-200 text-sm">
-                    <thead class="bg-blue-50">
-                        <tr>
-                            <th class="px-6 py-4 text-left font-bold text-blue-700">中文 (ZH)</th>
-                            <th class="px-6 py-4 text-left font-bold text-blue-700">英文 (EN)</th>
-                            <th class="px-6 py-4 text-left font-bold text-blue-700">常见搭配</th>
-                            <th class="px-6 py-4 text-left font-bold text-blue-700">双语说明 / Bilingual Insight</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        <script>
-                            const waterTable = [
-                                {zh: "洼", en: "hollow / depression", combo: "水洼、低洼", note: "低洼处，不一定有水 / Low area."},
-                                {zh: "塘", en: "pond", combo: "池塘、鱼塘", note: "小型静水 / Small standing water."},
-                                {zh: "川", en: "river / waterways", combo: "山川、河川", note: "书面，多指河系 / Formal term for rivers."},
-                                {zh: "溪", en: "stream / creek", combo: "溪水、溪流", note: "小而浅、自然流动 / Small, natural flow."},
-                                {zh: "涧", en: "mountain stream", combo: "山涧、涧水", note: "狭深，多山地 / Narrow and deep mountain flow."},
-                                {zh: "潭", en: "deep pool", combo: "深潭、寒潭", note: "深水区 / Deep pool area."},
-                                {zh: "泉", en: "spring", combo: "温泉、泉水", note: "地下水出露 / Ground water emerging."},
-                                {zh: "江", en: "river (major)", combo: "长江、江水", note: "大河、干流 / Large river."},
-                                {zh: "河", en: "river", combo: "黄河、河流", note: "最通用语 / Most common term."},
-                                {zh: "湖", en: "lake", combo: "湖泊、洞庭湖", note: "内陆面状水体 / Inland body of water."},
-                                {zh: "泊", en: "lake / moor", combo: "湖泊、泊位", note: "与「湖」成词素系统 / Compound with 'Lake'."},
-                                {zh: "海", en: "sea", combo: "海水、海岸", note: "近岸大水体 / Large body of water near coast."},
-                                {zh: "洋", en: "ocean", combo: "大洋、太平洋", note: "广阔远洋 / Vast open global ocean."},
-                                {zh: "渊", en: "abyss / deep pool", combo: "深渊", note: "极深水域（偏文）/ Extremely deep (literary)."}
-                            ];
-                            document.write(waterTable.map(row => `
-                                <tr>
-                                    <td class="px-6 py-4 font-bold text-blue-800">${row.zh}</td>
-                                    <td class="px-6 py-4 font-mono text-blue-600 text-xs">${row.en}</td>
-                                    <td class="px-6 py-4 text-gray-500">${row.combo}</td>
-                                    <td class="px-6 py-4 text-gray-600 italic text-xs">${row.note}</td>
-                                </tr>
-                            `).join(''));
-                        </script>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section id="dynamics" class="mb-16">
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                    <h3 class="font-bold text-indigo-900 mb-4 flex justify-between items-center">
-                        <span>小型 / 微地形水体</span>
-                        <span class="text-[10px] opacity-50 uppercase tracking-widest">Micro-topography</span>
-                    </h3>
-                    <div class="space-y-4 text-sm">
-                        <div class="flex justify-between items-end border-b border-indigo-200 pb-2">
-                            <div><span class="font-bold text-indigo-800">池 Pool / Pond</span><p class="text-xs text-gray-500">静态静水 / Static standing water.</p></div>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-indigo-200 pb-2">
-                            <div><span class="font-bold text-indigo-800">沟 Ditch / Channel</span><p class="text-xs text-gray-500">人工为主 / Primarily man-made drainage.</p></div>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-indigo-200 pb-2">
-                            <div><span class="font-bold text-indigo-800">渠 Canal / Irrigation</span><p class="text-xs text-gray-500">人工灌溉 / Explicitly for irrigation.</p></div>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-indigo-200 pb-2">
-                            <div><span class="font-bold text-indigo-800">沼 Marsh / Swamp</span><p class="text-xs text-gray-500">湿软地带 / Soft wetland area.</p></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-cyan-50 p-6 rounded-2xl border border-cyan-100">
-                    <h3 class="font-bold text-cyan-900 mb-4 flex justify-between items-center">
-                        <span>流动 / 状态型</span>
-                        <span class="text-[10px] opacity-50 uppercase tracking-widest">Flow & Dynamics</span>
-                    </h3>
-                    <div class="space-y-4 text-sm">
-                        <div class="flex justify-between items-end border-b border-cyan-200 pb-2">
-                            <div><span class="font-bold text-cyan-800">流 Flow / Current</span><p class="text-xs text-gray-500">动力流动 / Dynamic movement.</p></div>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-cyan-200 pb-2">
-                            <div><span class="font-bold text-cyan-800">滩 Shoal / Beach</span><p class="text-xs text-gray-500">水陆交界 / Water-land interface.</p></div>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-cyan-200 pb-2">
-                            <div><span class="font-bold text-cyan-800">漩 Whirlpool</span><p class="text-xs text-gray-500">动态旋转 / Circular flow.</p></div>
-                        </div>
-                        <div class="flex justify-between items-end border-b border-cyan-200 pb-2">
-                            <div><span class="font-bold text-cyan-800">潮 Tide</span><p class="text-xs text-gray-500">周期性涨落 / Periodic rise and fall.</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="spatial">
-            <div class="section-header border-amber-600 mb-6">
-                <h2 class="text-2xl font-bold text-amber-900">边界与空间语感 <span class="text-gray-400 font-light ml-2">Spatial Perception</span></h2>
-                <p class="text-gray-600 text-sm mt-1">水的“外壳”与空间感知 / Boundaries and surroundings.</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                <div class="text-center p-6 bg-amber-50 rounded-xl border border-amber-100 card-hover transition-all">
-                    <div class="text-2xl font-bold text-amber-800 mb-1">岸</div>
-                    <div class="text-[10px] font-mono text-amber-600 mb-2 uppercase">Shore / Bank</div>
-                </div>
-                <div class="text-center p-6 bg-amber-50 rounded-xl border border-amber-100 card-hover transition-all">
-                    <div class="text-2xl font-bold text-amber-800 mb-1">滨</div>
-                    <div class="text-[10px] font-mono text-amber-600 mb-2 uppercase">Waterfront</div>
-                </div>
-                <div class="text-center p-6 bg-amber-50 rounded-xl border border-amber-100 card-hover transition-all">
-                    <div class="text-2xl font-bold text-amber-800 mb-1">畔</div>
-                    <div class="text-[10px] font-mono text-amber-600 mb-2 uppercase">Side / Bank</div>
-                </div>
-                <div class="text-center p-6 bg-amber-50 rounded-xl border border-amber-100 card-hover transition-all">
-                    <div class="text-2xl font-bold text-amber-800 mb-1">沿</div>
-                    <div class="text-[10px] font-mono text-amber-600 mb-2 uppercase">Along</div>
-                </div>
-                <div class="text-center p-6 bg-orange-50 rounded-xl border border-orange-200 card-hover transition-all">
-                    <div class="text-2xl font-bold text-orange-800 mb-1">崖</div>
-                    <div class="text-[10px] font-mono text-orange-600 mb-2 uppercase">Cliff</div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-slate-900 text-slate-500 py-12 mt-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <p class="text-sm uppercase tracking-widest mb-2 font-bold">Bilingual Geography & Hydrology Encyclopedia</p>
-            <p class="text-xs opacity-60">地理学词汇双语互动指南 · v5.1 Full View Enabled</p>
-        </div>
-    </footer>
-
     <script>
-        function openLightbox(imgUrl) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = imgUrl;
-            lightbox.style.display = 'flex';
-        }
-    </script>
+        (function() {
+            // Comprehensive Chinese meaning map for dissection
+            const cnMeaningMap = {
+                "池": "小水池",
+                "塘": "堤岸/水塘",
+                "潭": "深水处",
+                "水": "水",
+                "湖": "大静止水体",
+                "泊": "船停留的岸边",
+                "淀": "浅水湖泊",
+                "库": "储藏处",
+                "泽": "湿地/水草丛生",
+                "沼": "泥泞水地",
+                "湿": "潮湿",
+                "地": "土地",
+                "盐": "咸味矿物",
+                "洼": "低陷处",
+                "山": "高山",
+                "涧": "山间水流",
+                "溪": "小河沟",
+                "小": "不大",
+                "河": "河流",
+                "流": "流动的水",
+                "江": "大河",
+                "渠": "人工水道",
+                "道": "路径",
+                "运": "运输",
+                "湍": "急流",
+                "急": "快速",
+                "渊": "深水",
+                "深": "很深",
+                "湾": "弯曲水岸",
+                "海": "大海",
+                "港": "港口",
+                "滩": "平坦沙岸",
+                "沙": "细沙",
+                "洲": "水中陆地",
+                "三": "数字3",
+                "角": "角落/角度",
+                "绿": "绿色",
+                "波": "波浪",
+                "浪": "大波",
+                "澜": "大波浪",
+                "瀑": "急泻水流",
+                "布": "铺开悬挂",
+                "火": "火焰",
+                "半": "一半",
+                "岛": "岛屿",
+                "隧": "地下通道",
+                "洞": "洞穴",
+                "溶": "溶解侵蚀",
+                "口": "开口通道",
+                "川": "河流水系",
+                "泉": "泉水",
+                "洋": "大洋",
+                "沟": "水沟",
+                "漩": "旋转水流",
+                "潮": "潮汐",
+                "原": "平原",
+                "平": "平坦",
+                "高": "高耸",
+                "盆": "盆地容器",
+                "漠": "荒漠",
+                "冻": "冻结",
+                "林": "森林",
+                "丘": "小山",
+                "陵": "丘陵",
+                "脊": "背脊",
+                "谷": "山谷",
+                "峡": "狭窄通道",
+                "悬": "悬挂",
+                "崖": "陡壁",
+                "石": "岩石",
+                "冲": "冲刷侵蚀",
+                "岸": "岸边",
+                "屿": "小岛",
+                "冰": "冰",
+                "台": "平台",
+                "低": "低矮",
+                "扇": "扇形",
+                "孤": "孤立"
+            };
 
+            // Complete dataset organized by category
+            const fullDataset = [
+                // ========== 💧 Small Still Water ==========
+                { category: "small-still", chinese: "池", pinyin: "chí", english: "pool / pond", definitionCn: "小型封闭水域", definitionEn: "small enclosed water", dissect: [{ cn: "池", en: "pool" }] },
+                { category: "small-still", chinese: "池塘", pinyin: "chí táng", english: "pond", definitionCn: "常见的小水池，学校常用词", definitionEn: "common school term for pond", dissect: [{ cn: "池", en: "pool" }, { cn: "塘", en: "bank/dike" }] },
+                { category: "small-still", chinese: "潭", pinyin: "tán", english: "deep pool", definitionCn: "比池更深的水潭", definitionEn: "deeper than 池", dissect: [{ cn: "潭", en: "deep water" }] },
+                { category: "small-still", chinese: "水潭", pinyin: "shuǐ tán", english: "pool", definitionCn: "天然深水潭", definitionEn: "natural deep pool", dissect: [{ cn: "水", en: "water" }, { cn: "潭", en: "deep" }] },
+
+                // ========== 🏞️ Lakes & Inland Water ==========
+                { category: "lakes", chinese: "湖", pinyin: "hú", english: "lake", definitionCn: "常见湖泊", definitionEn: "common form", dissect: [{ cn: "湖", en: "lake" }] },
+                { category: "lakes", chinese: "湖泊", pinyin: "hú pō", english: "lake", definitionCn: "正式地理术语", definitionEn: "formal geography term", dissect: [{ cn: "湖", en: "lake" }, { cn: "泊", en: "lake/anchorage" }] },
+                { category: "lakes", chinese: "泊", pinyin: "pō / bó", english: "lake / anchorage", definitionCn: "用于地名和复合词", definitionEn: "appears in names & compounds", dissect: [{ cn: "泊", en: "moor" }] },
+                { category: "lakes", chinese: "淀", pinyin: "diàn", english: "shallow lake / marsh lake", definitionCn: "北方地名常用", definitionEn: "northern China place names", dissect: [{ cn: "淀", en: "shallow sediment" }] },
+                { category: "lakes", chinese: "水库", pinyin: "shuǐ kù", english: "reservoir", definitionCn: "人造湖，储水设施", definitionEn: "man-made lake", dissect: [{ cn: "水", en: "water" }, { cn: "库", en: "storehouse" }] },
+
+                // ========== 🌿 Wetlands & Low Water Areas ==========
+                { category: "wetlands", chinese: "泽", pinyin: "zé", english: "marsh / wetland", definitionCn: "古典及现代复合词", definitionEn: "old/classical + modern compounds", dissect: [{ cn: "泽", en: "marsh" }] },
+                { category: "wetlands", chinese: "沼泽", pinyin: "zhǎo zé", english: "swamp / marsh", definitionCn: "常见地理词", definitionEn: "common geography word", dissect: [{ cn: "沼", en: "pool/marsh" }, { cn: "泽", en: "wetland" }] },
+                { category: "wetlands", chinese: "湿地", pinyin: "shī dì", english: "wetland", definitionCn: "现代科学术语", definitionEn: "modern science term", dissect: [{ cn: "湿", en: "wet" }, { cn: "地", en: "land" }] },
+                { category: "wetlands", chinese: "盐沼地", pinyin: "yán zhǎo dì", english: "salt marsh", definitionCn: "沿海咸水湿地", definitionEn: "coastal wetland with salt", dissect: [{ cn: "盐", en: "salt" }, { cn: "沼", en: "marsh" }, { cn: "地", en: "land" }] },
+                { category: "wetlands", chinese: "洼", pinyin: "wā", english: "hollow / lowland", definitionCn: "低洼潮湿处", definitionEn: "low wet place", dissect: [{ cn: "洼", en: "depression" }] },
+                { category: "wetlands", chinese: "洼地", pinyin: "wā dì", english: "depression", definitionCn: "低洼地形", definitionEn: "low landform", dissect: [{ cn: "洼", en: "hollow" }, { cn: "地", en: "land" }] },
+
+                // ========== 🏔️ Mountain Water ==========
+                { category: "mountain", chinese: "涧", pinyin: "jiàn", english: "mountain stream", definitionCn: "狭窄多石水流", definitionEn: "narrow rocky flow", dissect: [{ cn: "涧", en: "gorge stream" }] },
+                { category: "mountain", chinese: "山涧", pinyin: "shān jiàn", english: "mountain brook", definitionCn: "山谷溪流", definitionEn: "valley stream", dissect: [{ cn: "山", en: "mountain" }, { cn: "涧", en: "stream" }] },
+                { category: "mountain", chinese: "溪", pinyin: "xī", english: "creek / stream", definitionCn: "小型流动水", definitionEn: "small flowing water", dissect: [{ cn: "溪", en: "creek" }] },
+                { category: "mountain", chinese: "小溪", pinyin: "xiǎo xī", english: "small stream", definitionCn: "常见学校词汇", definitionEn: "common school word", dissect: [{ cn: "小", en: "small" }, { cn: "溪", en: "stream" }] },
+
+                // ========== 🌊 Rivers & Flowing Water ==========
+                { category: "rivers", chinese: "河", pinyin: "hé", english: "river", definitionCn: "通用河流", definitionEn: "general river", dissect: [{ cn: "河", en: "river" }] },
+                { category: "rivers", chinese: "河流", pinyin: "hé liú", english: "river", definitionCn: "正式术语", definitionEn: "formal term", dissect: [{ cn: "河", en: "river" }, { cn: "流", en: "flow" }] },
+                { category: "rivers", chinese: "江", pinyin: "jiāng", english: "large river", definitionCn: "大江大河，如长江", definitionEn: "major rivers", dissect: [{ cn: "江", en: "big river" }] },
+                { category: "rivers", chinese: "渠", pinyin: "qú", english: "canal / ditch", definitionCn: "人工水道", definitionEn: "man-made channel", dissect: [{ cn: "渠", en: "ditch" }] },
+                { category: "rivers", chinese: "渠道", pinyin: "qú dào", english: "channel", definitionCn: "路线/水道", definitionEn: "route / waterway", dissect: [{ cn: "渠", en: "canal" }, { cn: "道", en: "path" }] },
+                { category: "rivers", chinese: "运河", pinyin: "yùn hé", english: "canal", definitionCn: "运输水道", definitionEn: "transportation waterway", dissect: [{ cn: "运", en: "transport" }, { cn: "河", en: "river" }] },
+                { category: "rivers", chinese: "川", pinyin: "chuān", english: "river / waterways", definitionCn: "书面语，多指河系", definitionEn: "formal term for river systems", dissect: [{ cn: "川", en: "river" }] },
+
+                // ========== ⚡ Fast / Deep / Powerful Water ==========
+                { category: "fast-deep", chinese: "湍", pinyin: "tuān", english: "rapids", definitionCn: "急速水流", definitionEn: "fast rushing water", dissect: [{ cn: "湍", en: "rapids" }] },
+                { category: "fast-deep", chinese: "急湍", pinyin: "jí tuān", english: "rapids", definitionCn: "swift current", definitionEn: "swift current", dissect: [{ cn: "急", en: "urgent" }, { cn: "湍", en: "torrent" }] },
+                { category: "fast-deep", chinese: "渊", pinyin: "yuān", english: "deep water / abyss", definitionCn: "深暗水域", definitionEn: "deep and dark water", dissect: [{ cn: "渊", en: "abyss" }] },
+                { category: "fast-deep", chinese: "深渊", pinyin: "shēn yuān", english: "abyss", definitionCn: "极深之处", definitionEn: "very deep place", dissect: [{ cn: "深", en: "deep" }, { cn: "渊", en: "abyss" }] },
+                { category: "fast-deep", chinese: "瀑布", pinyin: "pù bù", english: "waterfall", definitionCn: "河水从陡坡跌落", definitionEn: "water falling from height", dissect: [{ cn: "瀑", en: "waterfall" }, { cn: "布", en: "spread" }] },
+
+                // ========== 🌊 Sea & Coastal Water ==========
+                { category: "sea-coastal", chinese: "湾", pinyin: "wān", english: "bay", definitionCn: "弯曲水岸", definitionEn: "curved inlet", dissect: [{ cn: "湾", en: "bay" }] },
+                { category: "sea-coastal", chinese: "海湾", pinyin: "hǎi wān", english: "bay", definitionCn: "常见地理词", definitionEn: "common geography term", dissect: [{ cn: "海", en: "sea" }, { cn: "湾", en: "bay" }] },
+                { category: "sea-coastal", chinese: "港湾", pinyin: "gǎng wān", english: "harbor", definitionCn: "受保护海湾", definitionEn: "protected bay", dissect: [{ cn: "港", en: "port" }, { cn: "湾", en: "bay" }] },
+                { category: "sea-coastal", chinese: "滩", pinyin: "tān", english: "beach / shoal", definitionCn: "沙质水边", definitionEn: "sandy edge", dissect: [{ cn: "滩", en: "beach" }] },
+                { category: "sea-coastal", chinese: "海滩", pinyin: "hǎi tān", english: "beach", definitionCn: "常见词", definitionEn: "common term", dissect: [{ cn: "海", en: "sea" }, { cn: "滩", en: "beach" }] },
+                { category: "sea-coastal", chinese: "沙滩", pinyin: "shā tān", english: "sandy beach", definitionCn: "日常用语", definitionEn: "common speech", dissect: [{ cn: "沙", en: "sand" }, { cn: "滩", en: "beach" }] },
+                { category: "sea-coastal", chinese: "海", pinyin: "hǎi", english: "sea", definitionCn: "近岸大水体", definitionEn: "large water near coast", dissect: [{ cn: "海", en: "sea" }] },
+                { category: "sea-coastal", chinese: "洋", pinyin: "yáng", english: "ocean", definitionCn: "广阔远洋", definitionEn: "vast open ocean", dissect: [{ cn: "洋", en: "ocean" }] },
+
+                // ========== 🏝️ Land in / by Water ==========
+                { category: "land-water", chinese: "洲", pinyin: "zhōu", english: "continent / sandbar", definitionCn: "含义广泛：大洲或沙洲", definitionEn: "broad meaning: continent or sandbar", dissect: [{ cn: "洲", en: "landmass" }] },
+                { category: "land-water", chinese: "三角洲", pinyin: "sān jiǎo zhōu", english: "delta", definitionCn: "河口地貌，河流沉积形成", definitionEn: "river-mouth landform", dissect: [{ cn: "三", en: "three" }, { cn: "角", en: "angle" }, { cn: "洲", en: "land" }] },
+                { category: "land-water", chinese: "绿洲", pinyin: "lǜ zhōu", english: "oasis", definitionCn: "沙漠中的肥沃土地", definitionEn: "fertile land in desert", dissect: [{ cn: "绿", en: "green" }, { cn: "洲", en: "land" }] },
+                { category: "land-water", chinese: "沙洲", pinyin: "shā zhōu", english: "sandbar", definitionCn: "水流沉积的沙堆", definitionEn: "sand accumulation by currents", dissect: [{ cn: "沙", en: "sand" }, { cn: "洲", en: "land" }] },
+                { category: "land-water", chinese: "岛屿", pinyin: "dǎo yǔ", english: "island", definitionCn: "四周环水的陆地", definitionEn: "land surrounded by water", dissect: [{ cn: "岛", en: "island" }, { cn: "屿", en: "islet" }] },
+                { category: "land-water", chinese: "半岛", pinyin: "bàn dǎo", english: "peninsula", definitionCn: "三面临水的陆地", definitionEn: "land surrounded on three sides by water", dissect: [{ cn: "半", en: "half" }, { cn: "岛", en: "island" }] },
+
+                // ========== 🌬️ Surface Water Motion ==========
+                { category: "surface", chinese: "波", pinyin: "bō", english: "wave", definitionCn: "基本波浪词", definitionEn: "basic wave term", dissect: [{ cn: "波", en: "wave" }] },
+                { category: "surface", chinese: "波浪", pinyin: "bō làng", english: "waves", definitionCn: "移动水面", definitionEn: "moving surface water", dissect: [{ cn: "波", en: "wave" }, { cn: "浪", en: "surge" }] },
+                { category: "surface", chinese: "澜", pinyin: "lán", english: "large wave", definitionCn: "文学/正式用语", definitionEn: "literary / formal", dissect: [{ cn: "澜", en: "billow" }] },
+                { category: "surface", chinese: "波澜", pinyin: "bō lán", english: "billows / surging waves", definitionCn: "正式短语", definitionEn: "formal phrase", dissect: [{ cn: "波", en: "wave" }, { cn: "澜", en: "large wave" }] },
+                { category: "surface", chinese: "流", pinyin: "liú", english: "flow / current", definitionCn: "动力流动", definitionEn: "dynamic movement", dissect: [{ cn: "流", en: "flow" }] },
+                { category: "surface", chinese: "漩", pinyin: "xuán", english: "whirlpool", definitionCn: "动态旋转水流", definitionEn: "circular flow", dissect: [{ cn: "漩", en: "whirl" }] },
+                { category: "surface", chinese: "潮", pinyin: "cháo", english: "tide", definitionCn: "周期性涨落", definitionEn: "periodic rise and fall", dissect: [{ cn: "潮", en: "tide" }] },
+
+                // ========== 🗺️ Land Areas (面状区域) ==========
+                { category: "land-area", chinese: "大洲", pinyin: "dà zhōu", english: "continent", definitionCn: "大片连续陆地", definitionEn: "large continuous landmass", dissect: [{ cn: "洲", en: "continent" }] },
+                { category: "land-area", chinese: "平原", pinyin: "píng yuán", english: "plain", definitionCn: "地势平坦、起伏小", definitionEn: "flat, low-relief land", dissect: [{ cn: "平", en: "flat" }, { cn: "原", en: "plain" }] },
+                { category: "land-area", chinese: "平地", pinyin: "píng dì", english: "flatland", definitionCn: "泛指平坦地面", definitionEn: "general term for level ground", dissect: [{ cn: "平", en: "flat" }, { cn: "地", en: "land" }] },
+                { category: "land-area", chinese: "高原", pinyin: "gāo yuán", english: "plateau", definitionCn: "海拔高但地形平坦", definitionEn: "elevated flat land", dissect: [{ cn: "高", en: "high" }, { cn: "原", en: "plain" }] },
+                { category: "land-area", chinese: "台地", pinyin: "tái dì", english: "tableland", definitionCn: "边陡顶平的高地", definitionEn: "flat-topped elevated land", dissect: [{ cn: "台", en: "platform" }, { cn: "地", en: "land" }] },
+                { category: "land-area", chinese: "盆地", pinyin: "pén dì", english: "basin", definitionCn: "四周高、中间低", definitionEn: "low area surrounded by higher land", dissect: [{ cn: "盆", en: "basin" }, { cn: "地", en: "land" }] },
+                { category: "land-area", chinese: "低地", pinyin: "dī dì", english: "lowland", definitionCn: "地势低平的地带", definitionEn: "area of land lower than surroundings", dissect: [{ cn: "低", en: "low" }, { cn: "地", en: "land" }] },
+                { category: "land-area", chinese: "沙漠", pinyin: "shā mò", english: "desert", definitionCn: "荒凉的沙质之地", definitionEn: "arid sandy land", dissect: [{ cn: "沙", en: "sand" }, { cn: "漠", en: "desert" }] },
+                { category: "land-area", chinese: "冻原", pinyin: "dòng yuán", english: "tundra", definitionCn: "冻结的平原，有永久冻土", definitionEn: "frozen plain with permafrost", dissect: [{ cn: "冻", en: "frozen" }, { cn: "原", en: "plain" }] },
+                { category: "land-area", chinese: "雨林", pinyin: "yǔ lín", english: "rainforest", definitionCn: "降水丰沛的密林", definitionEn: "dense forest with heavy rainfall", dissect: [{ cn: "雨", en: "rain" }, { cn: "林", en: "forest" }] },
+
+                // ========== ⛰️ Hills / Mountains (丘状/起伏) ==========
+                { category: "land-hill", chinese: "山地", pinyin: "shān dì", english: "mountains", definitionCn: "高大复杂地形", definitionEn: "high-elevation rugged land", dissect: [{ cn: "山", en: "mountain" }, { cn: "地", en: "land" }] },
+                { category: "land-hill", chinese: "山口", pinyin: "shān kǒu", english: "mountain pass", definitionCn: "山岭间的交通孔道", definitionEn: "navigable route through a range", dissect: [{ cn: "山", en: "mountain" }, { cn: "口", en: "opening" }] },
+                { category: "land-hill", chinese: "山脊", pinyin: "shān jǐ", english: "ridge", definitionCn: "背脊状隆起线", definitionEn: "long narrow crest", dissect: [{ cn: "山", en: "mountain" }, { cn: "脊", en: "ridge" }] },
+                { category: "land-hill", chinese: "山坡", pinyin: "shān pō", english: "slope", definitionCn: "山体倾斜面", definitionEn: "inclined surface of a mountain", dissect: [{ cn: "山", en: "mountain" }, { cn: "坡", en: "slope" }] },
+                { category: "land-hill", chinese: "丘陵", pinyin: "qiū líng", english: "hills", definitionCn: "低矮连绵起伏", definitionEn: "gently rolling hills", dissect: [{ cn: "丘", en: "hill" }, { cn: "陵", en: "mound" }] },
+                { category: "land-hill", chinese: "孤丘", pinyin: "gū qiū", english: "butte", definitionCn: "孤立的平顶丘", definitionEn: "isolated flat-topped hill", dissect: [{ cn: "孤", en: "isolated" }, { cn: "丘", en: "hill" }] },
+
+                // ========== 🏜️ Erosion / Caves (侵蚀/切割) ==========
+                { category: "land-erosion", chinese: "谷地", pinyin: "gǔ dì", english: "valley", definitionCn: "山间长形低洼地", definitionEn: "elongated depression between hills", dissect: [{ cn: "谷", en: "valley" }, { cn: "地", en: "land" }] },
+                { category: "land-erosion", chinese: "河谷", pinyin: "hé gǔ", english: "river valley", definitionCn: "河流流经的谷地", definitionEn: "valley formed by flowing water", dissect: [{ cn: "河", en: "river" }, { cn: "谷", en: "valley" }] },
+                { category: "land-erosion", chinese: "峡谷", pinyin: "xiá gǔ", english: "canyon", definitionCn: "狭长陡峭谷地", definitionEn: "deep, narrow and steep valley", dissect: [{ cn: "峡", en: "gorge" }, { cn: "谷", en: "valley" }] },
+                { category: "land-erosion", chinese: "冲沟", pinyin: "chōng gōu", english: "gully", definitionCn: "流水侵蚀形成的沟壑", definitionEn: "trench worn by running water", dissect: [{ cn: "冲", en: "erode" }, { cn: "沟", en: "ditch" }] },
+                { category: "land-erosion", chinese: "峡湾", pinyin: "xiá wān", english: "fjord", definitionCn: "狭长的海湾", definitionEn: "narrow and long sea inlet/bay", dissect: [{ cn: "峡", en: "gorge" }, { cn: "湾", en: "bay" }] },
+                { category: "land-erosion", chinese: "悬崖", pinyin: "xuán yá", english: "cliff", definitionCn: "垂直/悬空陡壁", definitionEn: "steep rock face or overhanging wall", dissect: [{ cn: "悬", en: "hanging" }, { cn: "崖", en: "cliff" }] },
+                { category: "land-erosion", chinese: "溶洞", pinyin: "róng dòng", english: "karst cave", definitionCn: "化学溶蚀形成的洞穴", definitionEn: "cave formed by chemical dissolution", dissect: [{ cn: "溶", en: "dissolve" }, { cn: "洞", en: "cave" }] },
+                { category: "land-erosion", chinese: "石林", pinyin: "shí lín", english: "stone forest", definitionCn: "岩石密集如林", definitionEn: "forest-like dense rock formations", dissect: [{ cn: "石", en: "stone" }, { cn: "林", en: "forest" }] },
+                { category: "land-erosion", chinese: "沙丘", pinyin: "shā qiū", english: "sand dune", definitionCn: "风力堆积的沙丘", definitionEn: "wind-formed sand hill", dissect: [{ cn: "沙", en: "sand" }, { cn: "丘", en: "hill" }] },
+
+                // ========== 🌋 Special Formations (特殊构造) ==========
+                { category: "land-special", chinese: "火山", pinyin: "huǒ shān", english: "volcano", definitionCn: "炽热岩浆喷发的山体", definitionEn: "mountain erupting fire and magma", dissect: [{ cn: "火", en: "fire" }, { cn: "山", en: "mountain" }] },
+                { category: "land-special", chinese: "冰川", pinyin: "bīng chuān", english: "glacier", definitionCn: "流动的冰体", definitionEn: "moving mass of ice", dissect: [{ cn: "冰", en: "ice" }, { cn: "川", en: "river" }] },
+                { category: "land-special", chinese: "冰川谷", pinyin: "bīng chuān gǔ", english: "glacial valley", definitionCn: "冰川侵蚀形成的谷地", definitionEn: "valley formed by glacial erosion", dissect: [{ cn: "冰川", en: "glacier" }, { cn: "谷", en: "valley" }] },
+                { category: "land-special", chinese: "隧道", pinyin: "suì dào", english: "tunnel", definitionCn: "地下或山中通路", definitionEn: "subterranean passage", dissect: [{ cn: "隧", en: "tunnel" }, { cn: "道", en: "path" }] },
+                { category: "land-special", chinese: "海岸", pinyin: "hǎi àn", english: "coast", definitionCn: "海洋的边缘", definitionEn: "edge of the sea", dissect: [{ cn: "海", en: "sea" }, { cn: "岸", en: "shore" }] },
+                { category: "land-special", chinese: "泉", pinyin: "quán", english: "spring", definitionCn: "地下水出露", definitionEn: "ground water emerging", dissect: [{ cn: "泉", en: "spring" }] },
+                { category: "land-special", chinese: "沟", pinyin: "gōu", english: "ditch / channel", definitionCn: "人工排水为主", definitionEn: "primarily man-made drainage", dissect: [{ cn: "沟", en: "ditch" }] }
+            ];
+
+            const categoryLabels = {
+                "all": "🌐 All Categories",
+                "small-still": "💧 Small Still Water",
+                "lakes": "🏞️ Lakes & Inland Water",
+                "wetlands": "🌿 Wetlands & Low Water",
+                "mountain": "🏔️ Mountain Water",
+                "rivers": "🌊 Rivers & Flowing Water",
+                "fast-deep": "⚡ Fast / Deep Water",
+                "sea-coastal": "🌊 Sea & Coastal Water",
+                "land-water": "🏝️ Land in / by Water",
+                "surface": "🌬️ Surface Water Motion",
+                "land-area": "🗺️ Land Areas & Regions",
+                "land-hill": "⛰️ Hills & Mountains",
+                "land-erosion": "🏜️ Erosion & Caves",
+                "land-special": "🌋 Special Formations"
+            };
+
+            let currentCategory = "all";
+            const tableContainer = document.getElementById('dynamicTableContainer');
+            const puzzleGallery = document.getElementById('puzzleGallery');
+            const imageLabel = document.getElementById('imageLabel');
+
+            function buildDissection(dissect, fullChinese) {
+                if (!dissect || dissect.length === 0) return '';
+
+                // Chinese dissection line
+                let cnLine = '<div class="dissect-line">🧩 中文：';
+                dissect.forEach((p, i) => {
+                    if (i > 0) cnLine += '<span class="plus-sign"> + </span>';
+                    cnLine += `<span class="char-piece">${p.cn} <small>(${cnMeaningMap[p.cn] || p.cn})</small></span>`;
+                });
+                cnLine += `<span class="arrow-sign"> = </span><span class="result-word">${fullChinese}</span></div>`;
+
+                // English dissection line
+                let enLine = '<div class="dissect-line en-line">🔤 English: ';
+                dissect.forEach((p, i) => {
+                    if (i > 0) enLine += ' + ';
+                    enLine += `<strong>${p.cn}</strong> (${p.en})`;
+                });
+                enLine += ` = <strong>${fullChinese}</strong></div>`;
+
+                return `<div class="puzzle-box">${cnLine}${enLine}</div>`;
+            }
+
+            function renderTable(cat) {
+                const filtered = cat === 'all' ? fullDataset : fullDataset.filter(d => d.category === cat);
+                if (!filtered.length) {
+                    tableContainer.innerHTML = '<p style="padding:2rem;text-align:center;">✨ 此分类暂无数据 / No items in this category yet.</p>';
+                    return;
+                }
+                let html = `<div class="table-wrapper"><table><thead><tr><th>中文 & Pinyin</th><th>English</th><th>定义 / Definition</th></tr></thead><tbody>`;
+                filtered.forEach(item => {
+                    html += `<tr>
+                        <td class="chinese-cell">${item.chinese}<span class="pinyin-sm">${item.pinyin}</span></td>
+                        <td class="english-name">${item.english}</td>
+                        <td><span style="font-weight:600;">${item.definitionCn}</span><br><span style="color:#3a5a6b;">${item.definitionEn}</span></td>
+                    </tr>`;
+                    if (item.dissect && item.dissect.length > 0) {
+                        html += `<tr style="background:#fffdf7;"><td colspan="3">${buildDissection(item.dissect, item.chinese)}</td></tr>`;
+                    }
+                });
+                html += '</tbody></table></div>';
+                tableContainer.innerHTML = html;
+            }
+
+            function renderGallery() {
+                const examples = fullDataset.filter(d => d.dissect && d.dissect.length >= 2).slice(0, 10);
+                let h = '';
+                examples.forEach(item => {
+                    h += `<div style="background:#f4f9fc;padding:0.8rem 1.2rem;border-radius:1.5rem;margin-bottom:0.5rem;">${buildDissection(item.dissect, item.chinese)}</div>`;
+                });
+                puzzleGallery.innerHTML = h || '<p>🔍 拆解更多词汇可见上方表格。</p>';
+            }
+
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    e.currentTarget.classList.add('active');
+                    const cat = e.currentTarget.dataset.category;
+                    currentCategory = cat;
+                    imageLabel.textContent = categoryLabels[cat] || cat;
+                    renderTable(cat);
+                });
+            });
+
+            // Initial render
+            renderTable('all');
+            renderGallery();
+        })();
+    </script>
 </body>
 </html>
