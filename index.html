@@ -205,24 +205,24 @@
         <div class="subtitle">🧩 中英对照 · 汉字拆解 · Chinese + Pinyin + English · 全年龄段</div>
 
         <div class="image-slot" id="categoryImageSlot">
-            <span>🖼️ <span id="imageLabel">全部地形与水</span> — 图片位置 (PNG) </span>
+            <span>🖼️ <span id="imageLabel">全部地形与水 All Land & Water</span> — 图片位置 (PNG) </span>
         </div>
 
         <div class="category-nav" id="categoryNav">
-            <button class="cat-btn active" data-category="all">🌐 All</button>
-            <button class="cat-btn" data-category="small-still">💧 Small Still</button>
-            <button class="cat-btn" data-category="lakes">🏞️ Lakes</button>
-            <button class="cat-btn" data-category="wetlands">🌿 Wetlands</button>
-            <button class="cat-btn" data-category="mountain">🏔️ Mountain Water</button>
-            <button class="cat-btn" data-category="rivers">🌊 Rivers</button>
-            <button class="cat-btn" data-category="fast-deep">⚡ Fast/Deep</button>
-            <button class="cat-btn" data-category="sea-coastal">🌊 Sea&Coast</button>
-            <button class="cat-btn" data-category="land-water">🏝️ Land in Water</button>
-            <button class="cat-btn" data-category="surface">🌬️ Surface Motion</button>
-            <button class="cat-btn" data-category="land-area">🗺️ Land Areas</button>
-            <button class="cat-btn" data-category="land-hill">⛰️ Hills/Mountains</button>
-            <button class="cat-btn" data-category="land-erosion">🏜️ Erosion/Caves</button>
-            <button class="cat-btn" data-category="land-special">🌋 Special</button>
+            <button class="cat-btn active" data-category="all">🌐 全部 All</button>
+            <button class="cat-btn" data-category="small-still">💧 静水 Small Still</button>
+            <button class="cat-btn" data-category="lakes">🏞️ 湖泊 Lakes</button>
+            <button class="cat-btn" data-category="wetlands">🌿 湿地 Wetlands</button>
+            <button class="cat-btn" data-category="mountain">🏔️ 山涧 Mountain Water</button>
+            <button class="cat-btn" data-category="rivers">🌊 河流 Rivers</button>
+            <button class="cat-btn" data-category="fast-deep">⚡ 急流深渊 Fast/Deep</button>
+            <button class="cat-btn" data-category="sea-coastal">🌊 海洋海岸 Sea&Coast</button>
+            <button class="cat-btn" data-category="land-water">🏝️ 水中陆地 Land in Water</button>
+            <button class="cat-btn" data-category="surface">🌬️ 水面动态 Surface Motion</button>
+            <button class="cat-btn" data-category="land-area">🗺️ 面状区域 Land Areas</button>
+            <button class="cat-btn" data-category="land-hill">⛰️ 丘状山地 Hills/Mountains</button>
+            <button class="cat-btn" data-category="land-erosion">🏜️ 侵蚀切割 Erosion/Caves</button>
+            <button class="cat-btn" data-category="land-special">🌋 特殊构造 Special</button>
         </div>
 
         <div id="dynamicTableContainer"></div>
@@ -238,118 +238,42 @@
 
     <script>
         (function() {
-            // Comprehensive Chinese meaning map for dissection
             const cnMeaningMap = {
-                "池": "小水池",
-                "塘": "堤岸/水塘",
-                "潭": "深水处",
-                "水": "水",
-                "湖": "大静止水体",
-                "泊": "船停留的岸边",
-                "淀": "浅水湖泊",
-                "库": "储藏处",
-                "泽": "湿地/水草丛生",
-                "沼": "泥泞水地",
-                "湿": "潮湿",
-                "地": "土地",
-                "盐": "咸味矿物",
-                "洼": "低陷处",
-                "山": "高山",
-                "涧": "山间水流",
-                "溪": "小河沟",
-                "小": "不大",
-                "河": "河流",
-                "流": "流动的水",
-                "江": "大河",
-                "渠": "人工水道",
-                "道": "路径",
-                "运": "运输",
-                "湍": "急流",
-                "急": "快速",
-                "渊": "深水",
-                "深": "很深",
-                "湾": "弯曲水岸",
-                "海": "大海",
-                "港": "港口",
-                "滩": "平坦沙岸",
-                "沙": "细沙",
-                "洲": "水中陆地",
-                "三": "数字3",
-                "角": "角落/角度",
-                "绿": "绿色",
-                "波": "波浪",
-                "浪": "大波",
-                "澜": "大波浪",
-                "瀑": "急泻水流",
-                "布": "铺开悬挂",
-                "火": "火焰",
-                "半": "一半",
-                "岛": "岛屿",
-                "隧": "地下通道",
-                "洞": "洞穴",
-                "溶": "溶解侵蚀",
-                "口": "开口通道",
-                "川": "河流水系",
-                "泉": "泉水",
-                "洋": "大洋",
-                "沟": "水沟",
-                "漩": "旋转水流",
-                "潮": "潮汐",
-                "原": "平原",
-                "平": "平坦",
-                "高": "高耸",
-                "盆": "盆地容器",
-                "漠": "荒漠",
-                "冻": "冻结",
-                "林": "森林",
-                "丘": "小山",
-                "陵": "丘陵",
-                "脊": "背脊",
-                "谷": "山谷",
-                "峡": "狭窄通道",
-                "悬": "悬挂",
-                "崖": "陡壁",
-                "石": "岩石",
-                "冲": "冲刷侵蚀",
-                "岸": "岸边",
-                "屿": "小岛",
-                "冰": "冰",
-                "台": "平台",
-                "低": "低矮",
-                "扇": "扇形",
-                "孤": "孤立"
+                "池": "小水池", "塘": "堤岸/水塘", "潭": "深水处", "水": "水", "湖": "大静止水体", "泊": "船停留的岸边",
+                "淀": "浅水湖泊", "库": "储藏处", "泽": "湿地/水草丛生", "沼": "泥泞水地", "湿": "潮湿", "地": "土地",
+                "盐": "咸味矿物", "洼": "低陷处", "山": "高山", "涧": "山间水流", "溪": "小河沟", "小": "不大",
+                "河": "河流", "流": "流动的水", "江": "大河", "渠": "人工水道", "道": "路径", "运": "运输",
+                "湍": "急流", "急": "快速", "渊": "深水", "深": "很深", "湾": "弯曲水岸", "海": "大海",
+                "港": "港口", "滩": "平坦沙岸", "沙": "细沙", "洲": "水中陆地", "三": "数字3", "角": "角落/角度",
+                "绿": "绿色", "波": "波浪", "浪": "大波", "澜": "大波浪", "瀑": "急泻水流", "布": "铺开悬挂",
+                "火": "火焰", "半": "一半", "岛": "岛屿", "隧": "地下通道", "洞": "洞穴", "溶": "溶解侵蚀",
+                "口": "开口通道", "川": "河流水系", "泉": "泉水", "洋": "大洋", "沟": "水沟", "漩": "旋转水流",
+                "潮": "潮汐", "原": "平原", "平": "平坦", "高": "高耸", "盆": "盆地容器", "漠": "荒漠",
+                "冻": "冻结", "林": "森林", "丘": "小山", "陵": "丘陵", "脊": "背脊", "谷": "山谷",
+                "峡": "狭窄通道", "悬": "悬挂", "崖": "陡壁", "石": "岩石", "冲": "冲刷侵蚀", "岸": "岸边",
+                "屿": "小岛", "冰": "冰", "台": "平台", "低": "低矮", "扇": "扇形", "孤": "孤立"
             };
 
-            // Complete dataset organized by category
             const fullDataset = [
-                // ========== 💧 Small Still Water ==========
                 { category: "small-still", chinese: "池", pinyin: "chí", english: "pool / pond", definitionCn: "小型封闭水域", definitionEn: "small enclosed water", dissect: [{ cn: "池", en: "pool" }] },
                 { category: "small-still", chinese: "池塘", pinyin: "chí táng", english: "pond", definitionCn: "常见的小水池，学校常用词", definitionEn: "common school term for pond", dissect: [{ cn: "池", en: "pool" }, { cn: "塘", en: "bank/dike" }] },
                 { category: "small-still", chinese: "潭", pinyin: "tán", english: "deep pool", definitionCn: "比池更深的水潭", definitionEn: "deeper than 池", dissect: [{ cn: "潭", en: "deep water" }] },
                 { category: "small-still", chinese: "水潭", pinyin: "shuǐ tán", english: "pool", definitionCn: "天然深水潭", definitionEn: "natural deep pool", dissect: [{ cn: "水", en: "water" }, { cn: "潭", en: "deep" }] },
-
-                // ========== 🏞️ Lakes & Inland Water ==========
                 { category: "lakes", chinese: "湖", pinyin: "hú", english: "lake", definitionCn: "常见湖泊", definitionEn: "common form", dissect: [{ cn: "湖", en: "lake" }] },
                 { category: "lakes", chinese: "湖泊", pinyin: "hú pō", english: "lake", definitionCn: "正式地理术语", definitionEn: "formal geography term", dissect: [{ cn: "湖", en: "lake" }, { cn: "泊", en: "lake/anchorage" }] },
                 { category: "lakes", chinese: "泊", pinyin: "pō / bó", english: "lake / anchorage", definitionCn: "用于地名和复合词", definitionEn: "appears in names & compounds", dissect: [{ cn: "泊", en: "moor" }] },
                 { category: "lakes", chinese: "淀", pinyin: "diàn", english: "shallow lake / marsh lake", definitionCn: "北方地名常用", definitionEn: "northern China place names", dissect: [{ cn: "淀", en: "shallow sediment" }] },
                 { category: "lakes", chinese: "水库", pinyin: "shuǐ kù", english: "reservoir", definitionCn: "人造湖，储水设施", definitionEn: "man-made lake", dissect: [{ cn: "水", en: "water" }, { cn: "库", en: "storehouse" }] },
-
-                // ========== 🌿 Wetlands & Low Water Areas ==========
                 { category: "wetlands", chinese: "泽", pinyin: "zé", english: "marsh / wetland", definitionCn: "古典及现代复合词", definitionEn: "old/classical + modern compounds", dissect: [{ cn: "泽", en: "marsh" }] },
                 { category: "wetlands", chinese: "沼泽", pinyin: "zhǎo zé", english: "swamp / marsh", definitionCn: "常见地理词", definitionEn: "common geography word", dissect: [{ cn: "沼", en: "pool/marsh" }, { cn: "泽", en: "wetland" }] },
                 { category: "wetlands", chinese: "湿地", pinyin: "shī dì", english: "wetland", definitionCn: "现代科学术语", definitionEn: "modern science term", dissect: [{ cn: "湿", en: "wet" }, { cn: "地", en: "land" }] },
                 { category: "wetlands", chinese: "盐沼地", pinyin: "yán zhǎo dì", english: "salt marsh", definitionCn: "沿海咸水湿地", definitionEn: "coastal wetland with salt", dissect: [{ cn: "盐", en: "salt" }, { cn: "沼", en: "marsh" }, { cn: "地", en: "land" }] },
                 { category: "wetlands", chinese: "洼", pinyin: "wā", english: "hollow / lowland", definitionCn: "低洼潮湿处", definitionEn: "low wet place", dissect: [{ cn: "洼", en: "depression" }] },
                 { category: "wetlands", chinese: "洼地", pinyin: "wā dì", english: "depression", definitionCn: "低洼地形", definitionEn: "low landform", dissect: [{ cn: "洼", en: "hollow" }, { cn: "地", en: "land" }] },
-
-                // ========== 🏔️ Mountain Water ==========
                 { category: "mountain", chinese: "涧", pinyin: "jiàn", english: "mountain stream", definitionCn: "狭窄多石水流", definitionEn: "narrow rocky flow", dissect: [{ cn: "涧", en: "gorge stream" }] },
                 { category: "mountain", chinese: "山涧", pinyin: "shān jiàn", english: "mountain brook", definitionCn: "山谷溪流", definitionEn: "valley stream", dissect: [{ cn: "山", en: "mountain" }, { cn: "涧", en: "stream" }] },
                 { category: "mountain", chinese: "溪", pinyin: "xī", english: "creek / stream", definitionCn: "小型流动水", definitionEn: "small flowing water", dissect: [{ cn: "溪", en: "creek" }] },
                 { category: "mountain", chinese: "小溪", pinyin: "xiǎo xī", english: "small stream", definitionCn: "常见学校词汇", definitionEn: "common school word", dissect: [{ cn: "小", en: "small" }, { cn: "溪", en: "stream" }] },
-
-                // ========== 🌊 Rivers & Flowing Water ==========
                 { category: "rivers", chinese: "河", pinyin: "hé", english: "river", definitionCn: "通用河流", definitionEn: "general river", dissect: [{ cn: "河", en: "river" }] },
                 { category: "rivers", chinese: "河流", pinyin: "hé liú", english: "river", definitionCn: "正式术语", definitionEn: "formal term", dissect: [{ cn: "河", en: "river" }, { cn: "流", en: "flow" }] },
                 { category: "rivers", chinese: "江", pinyin: "jiāng", english: "large river", definitionCn: "大江大河，如长江", definitionEn: "major rivers", dissect: [{ cn: "江", en: "big river" }] },
@@ -357,15 +281,11 @@
                 { category: "rivers", chinese: "渠道", pinyin: "qú dào", english: "channel", definitionCn: "路线/水道", definitionEn: "route / waterway", dissect: [{ cn: "渠", en: "canal" }, { cn: "道", en: "path" }] },
                 { category: "rivers", chinese: "运河", pinyin: "yùn hé", english: "canal", definitionCn: "运输水道", definitionEn: "transportation waterway", dissect: [{ cn: "运", en: "transport" }, { cn: "河", en: "river" }] },
                 { category: "rivers", chinese: "川", pinyin: "chuān", english: "river / waterways", definitionCn: "书面语，多指河系", definitionEn: "formal term for river systems", dissect: [{ cn: "川", en: "river" }] },
-
-                // ========== ⚡ Fast / Deep / Powerful Water ==========
                 { category: "fast-deep", chinese: "湍", pinyin: "tuān", english: "rapids", definitionCn: "急速水流", definitionEn: "fast rushing water", dissect: [{ cn: "湍", en: "rapids" }] },
                 { category: "fast-deep", chinese: "急湍", pinyin: "jí tuān", english: "rapids", definitionCn: "swift current", definitionEn: "swift current", dissect: [{ cn: "急", en: "urgent" }, { cn: "湍", en: "torrent" }] },
                 { category: "fast-deep", chinese: "渊", pinyin: "yuān", english: "deep water / abyss", definitionCn: "深暗水域", definitionEn: "deep and dark water", dissect: [{ cn: "渊", en: "abyss" }] },
                 { category: "fast-deep", chinese: "深渊", pinyin: "shēn yuān", english: "abyss", definitionCn: "极深之处", definitionEn: "very deep place", dissect: [{ cn: "深", en: "deep" }, { cn: "渊", en: "abyss" }] },
                 { category: "fast-deep", chinese: "瀑布", pinyin: "pù bù", english: "waterfall", definitionCn: "河水从陡坡跌落", definitionEn: "water falling from height", dissect: [{ cn: "瀑", en: "waterfall" }, { cn: "布", en: "spread" }] },
-
-                // ========== 🌊 Sea & Coastal Water ==========
                 { category: "sea-coastal", chinese: "湾", pinyin: "wān", english: "bay", definitionCn: "弯曲水岸", definitionEn: "curved inlet", dissect: [{ cn: "湾", en: "bay" }] },
                 { category: "sea-coastal", chinese: "海湾", pinyin: "hǎi wān", english: "bay", definitionCn: "常见地理词", definitionEn: "common geography term", dissect: [{ cn: "海", en: "sea" }, { cn: "湾", en: "bay" }] },
                 { category: "sea-coastal", chinese: "港湾", pinyin: "gǎng wān", english: "harbor", definitionCn: "受保护海湾", definitionEn: "protected bay", dissect: [{ cn: "港", en: "port" }, { cn: "湾", en: "bay" }] },
@@ -374,16 +294,12 @@
                 { category: "sea-coastal", chinese: "沙滩", pinyin: "shā tān", english: "sandy beach", definitionCn: "日常用语", definitionEn: "common speech", dissect: [{ cn: "沙", en: "sand" }, { cn: "滩", en: "beach" }] },
                 { category: "sea-coastal", chinese: "海", pinyin: "hǎi", english: "sea", definitionCn: "近岸大水体", definitionEn: "large water near coast", dissect: [{ cn: "海", en: "sea" }] },
                 { category: "sea-coastal", chinese: "洋", pinyin: "yáng", english: "ocean", definitionCn: "广阔远洋", definitionEn: "vast open ocean", dissect: [{ cn: "洋", en: "ocean" }] },
-
-                // ========== 🏝️ Land in / by Water ==========
                 { category: "land-water", chinese: "洲", pinyin: "zhōu", english: "continent / sandbar", definitionCn: "含义广泛：大洲或沙洲", definitionEn: "broad meaning: continent or sandbar", dissect: [{ cn: "洲", en: "landmass" }] },
                 { category: "land-water", chinese: "三角洲", pinyin: "sān jiǎo zhōu", english: "delta", definitionCn: "河口地貌，河流沉积形成", definitionEn: "river-mouth landform", dissect: [{ cn: "三", en: "three" }, { cn: "角", en: "angle" }, { cn: "洲", en: "land" }] },
                 { category: "land-water", chinese: "绿洲", pinyin: "lǜ zhōu", english: "oasis", definitionCn: "沙漠中的肥沃土地", definitionEn: "fertile land in desert", dissect: [{ cn: "绿", en: "green" }, { cn: "洲", en: "land" }] },
                 { category: "land-water", chinese: "沙洲", pinyin: "shā zhōu", english: "sandbar", definitionCn: "水流沉积的沙堆", definitionEn: "sand accumulation by currents", dissect: [{ cn: "沙", en: "sand" }, { cn: "洲", en: "land" }] },
                 { category: "land-water", chinese: "岛屿", pinyin: "dǎo yǔ", english: "island", definitionCn: "四周环水的陆地", definitionEn: "land surrounded by water", dissect: [{ cn: "岛", en: "island" }, { cn: "屿", en: "islet" }] },
                 { category: "land-water", chinese: "半岛", pinyin: "bàn dǎo", english: "peninsula", definitionCn: "三面临水的陆地", definitionEn: "land surrounded on three sides by water", dissect: [{ cn: "半", en: "half" }, { cn: "岛", en: "island" }] },
-
-                // ========== 🌬️ Surface Water Motion ==========
                 { category: "surface", chinese: "波", pinyin: "bō", english: "wave", definitionCn: "基本波浪词", definitionEn: "basic wave term", dissect: [{ cn: "波", en: "wave" }] },
                 { category: "surface", chinese: "波浪", pinyin: "bō làng", english: "waves", definitionCn: "移动水面", definitionEn: "moving surface water", dissect: [{ cn: "波", en: "wave" }, { cn: "浪", en: "surge" }] },
                 { category: "surface", chinese: "澜", pinyin: "lán", english: "large wave", definitionCn: "文学/正式用语", definitionEn: "literary / formal", dissect: [{ cn: "澜", en: "billow" }] },
@@ -391,8 +307,6 @@
                 { category: "surface", chinese: "流", pinyin: "liú", english: "flow / current", definitionCn: "动力流动", definitionEn: "dynamic movement", dissect: [{ cn: "流", en: "flow" }] },
                 { category: "surface", chinese: "漩", pinyin: "xuán", english: "whirlpool", definitionCn: "动态旋转水流", definitionEn: "circular flow", dissect: [{ cn: "漩", en: "whirl" }] },
                 { category: "surface", chinese: "潮", pinyin: "cháo", english: "tide", definitionCn: "周期性涨落", definitionEn: "periodic rise and fall", dissect: [{ cn: "潮", en: "tide" }] },
-
-                // ========== 🗺️ Land Areas (面状区域) ==========
                 { category: "land-area", chinese: "大洲", pinyin: "dà zhōu", english: "continent", definitionCn: "大片连续陆地", definitionEn: "large continuous landmass", dissect: [{ cn: "洲", en: "continent" }] },
                 { category: "land-area", chinese: "平原", pinyin: "píng yuán", english: "plain", definitionCn: "地势平坦、起伏小", definitionEn: "flat, low-relief land", dissect: [{ cn: "平", en: "flat" }, { cn: "原", en: "plain" }] },
                 { category: "land-area", chinese: "平地", pinyin: "píng dì", english: "flatland", definitionCn: "泛指平坦地面", definitionEn: "general term for level ground", dissect: [{ cn: "平", en: "flat" }, { cn: "地", en: "land" }] },
@@ -403,16 +317,12 @@
                 { category: "land-area", chinese: "沙漠", pinyin: "shā mò", english: "desert", definitionCn: "荒凉的沙质之地", definitionEn: "arid sandy land", dissect: [{ cn: "沙", en: "sand" }, { cn: "漠", en: "desert" }] },
                 { category: "land-area", chinese: "冻原", pinyin: "dòng yuán", english: "tundra", definitionCn: "冻结的平原，有永久冻土", definitionEn: "frozen plain with permafrost", dissect: [{ cn: "冻", en: "frozen" }, { cn: "原", en: "plain" }] },
                 { category: "land-area", chinese: "雨林", pinyin: "yǔ lín", english: "rainforest", definitionCn: "降水丰沛的密林", definitionEn: "dense forest with heavy rainfall", dissect: [{ cn: "雨", en: "rain" }, { cn: "林", en: "forest" }] },
-
-                // ========== ⛰️ Hills / Mountains (丘状/起伏) ==========
                 { category: "land-hill", chinese: "山地", pinyin: "shān dì", english: "mountains", definitionCn: "高大复杂地形", definitionEn: "high-elevation rugged land", dissect: [{ cn: "山", en: "mountain" }, { cn: "地", en: "land" }] },
                 { category: "land-hill", chinese: "山口", pinyin: "shān kǒu", english: "mountain pass", definitionCn: "山岭间的交通孔道", definitionEn: "navigable route through a range", dissect: [{ cn: "山", en: "mountain" }, { cn: "口", en: "opening" }] },
                 { category: "land-hill", chinese: "山脊", pinyin: "shān jǐ", english: "ridge", definitionCn: "背脊状隆起线", definitionEn: "long narrow crest", dissect: [{ cn: "山", en: "mountain" }, { cn: "脊", en: "ridge" }] },
                 { category: "land-hill", chinese: "山坡", pinyin: "shān pō", english: "slope", definitionCn: "山体倾斜面", definitionEn: "inclined surface of a mountain", dissect: [{ cn: "山", en: "mountain" }, { cn: "坡", en: "slope" }] },
                 { category: "land-hill", chinese: "丘陵", pinyin: "qiū líng", english: "hills", definitionCn: "低矮连绵起伏", definitionEn: "gently rolling hills", dissect: [{ cn: "丘", en: "hill" }, { cn: "陵", en: "mound" }] },
                 { category: "land-hill", chinese: "孤丘", pinyin: "gū qiū", english: "butte", definitionCn: "孤立的平顶丘", definitionEn: "isolated flat-topped hill", dissect: [{ cn: "孤", en: "isolated" }, { cn: "丘", en: "hill" }] },
-
-                // ========== 🏜️ Erosion / Caves (侵蚀/切割) ==========
                 { category: "land-erosion", chinese: "谷地", pinyin: "gǔ dì", english: "valley", definitionCn: "山间长形低洼地", definitionEn: "elongated depression between hills", dissect: [{ cn: "谷", en: "valley" }, { cn: "地", en: "land" }] },
                 { category: "land-erosion", chinese: "河谷", pinyin: "hé gǔ", english: "river valley", definitionCn: "河流流经的谷地", definitionEn: "valley formed by flowing water", dissect: [{ cn: "河", en: "river" }, { cn: "谷", en: "valley" }] },
                 { category: "land-erosion", chinese: "峡谷", pinyin: "xiá gǔ", english: "canyon", definitionCn: "狭长陡峭谷地", definitionEn: "deep, narrow and steep valley", dissect: [{ cn: "峡", en: "gorge" }, { cn: "谷", en: "valley" }] },
@@ -422,8 +332,6 @@
                 { category: "land-erosion", chinese: "溶洞", pinyin: "róng dòng", english: "karst cave", definitionCn: "化学溶蚀形成的洞穴", definitionEn: "cave formed by chemical dissolution", dissect: [{ cn: "溶", en: "dissolve" }, { cn: "洞", en: "cave" }] },
                 { category: "land-erosion", chinese: "石林", pinyin: "shí lín", english: "stone forest", definitionCn: "岩石密集如林", definitionEn: "forest-like dense rock formations", dissect: [{ cn: "石", en: "stone" }, { cn: "林", en: "forest" }] },
                 { category: "land-erosion", chinese: "沙丘", pinyin: "shā qiū", english: "sand dune", definitionCn: "风力堆积的沙丘", definitionEn: "wind-formed sand hill", dissect: [{ cn: "沙", en: "sand" }, { cn: "丘", en: "hill" }] },
-
-                // ========== 🌋 Special Formations (特殊构造) ==========
                 { category: "land-special", chinese: "火山", pinyin: "huǒ shān", english: "volcano", definitionCn: "炽热岩浆喷发的山体", definitionEn: "mountain erupting fire and magma", dissect: [{ cn: "火", en: "fire" }, { cn: "山", en: "mountain" }] },
                 { category: "land-special", chinese: "冰川", pinyin: "bīng chuān", english: "glacier", definitionCn: "流动的冰体", definitionEn: "moving mass of ice", dissect: [{ cn: "冰", en: "ice" }, { cn: "川", en: "river" }] },
                 { category: "land-special", chinese: "冰川谷", pinyin: "bīng chuān gǔ", english: "glacial valley", definitionCn: "冰川侵蚀形成的谷地", definitionEn: "valley formed by glacial erosion", dissect: [{ cn: "冰川", en: "glacier" }, { cn: "谷", en: "valley" }] },
@@ -434,20 +342,20 @@
             ];
 
             const categoryLabels = {
-                "all": "🌐 All Categories",
-                "small-still": "💧 Small Still Water",
-                "lakes": "🏞️ Lakes & Inland Water",
-                "wetlands": "🌿 Wetlands & Low Water",
-                "mountain": "🏔️ Mountain Water",
-                "rivers": "🌊 Rivers & Flowing Water",
-                "fast-deep": "⚡ Fast / Deep Water",
-                "sea-coastal": "🌊 Sea & Coastal Water",
-                "land-water": "🏝️ Land in / by Water",
-                "surface": "🌬️ Surface Water Motion",
-                "land-area": "🗺️ Land Areas & Regions",
-                "land-hill": "⛰️ Hills & Mountains",
-                "land-erosion": "🏜️ Erosion & Caves",
-                "land-special": "🌋 Special Formations"
+                "all": "🌐 全部地形与水 All Land & Water",
+                "small-still": "💧 静水 Small Still Water",
+                "lakes": "🏞️ 湖泊 Lakes & Inland Water",
+                "wetlands": "🌿 湿地 Wetlands & Low Water",
+                "mountain": "🏔️ 山涧溪流 Mountain Water",
+                "rivers": "🌊 河流 Rivers & Flowing Water",
+                "fast-deep": "⚡ 急流深渊 Fast / Deep Water",
+                "sea-coastal": "🌊 海洋海岸 Sea & Coastal Water",
+                "land-water": "🏝️ 水中陆地 Land in / by Water",
+                "surface": "🌬️ 水面动态 Surface Water Motion",
+                "land-area": "🗺️ 面状区域 Land Areas & Regions",
+                "land-hill": "⛰️ 丘状山地 Hills & Mountains",
+                "land-erosion": "🏜️ 侵蚀切割 Erosion & Caves",
+                "land-special": "🌋 特殊构造 Special Formations"
             };
 
             let currentCategory = "all";
@@ -457,23 +365,18 @@
 
             function buildDissection(dissect, fullChinese) {
                 if (!dissect || dissect.length === 0) return '';
-
-                // Chinese dissection line
                 let cnLine = '<div class="dissect-line">🧩 中文：';
                 dissect.forEach((p, i) => {
                     if (i > 0) cnLine += '<span class="plus-sign"> + </span>';
                     cnLine += `<span class="char-piece">${p.cn} <small>(${cnMeaningMap[p.cn] || p.cn})</small></span>`;
                 });
                 cnLine += `<span class="arrow-sign"> = </span><span class="result-word">${fullChinese}</span></div>`;
-
-                // English dissection line
                 let enLine = '<div class="dissect-line en-line">🔤 English: ';
                 dissect.forEach((p, i) => {
                     if (i > 0) enLine += ' + ';
                     enLine += `<strong>${p.cn}</strong> (${p.en})`;
                 });
                 enLine += ` = <strong>${fullChinese}</strong></div>`;
-
                 return `<div class="puzzle-box">${cnLine}${enLine}</div>`;
             }
 
@@ -518,7 +421,6 @@
                 });
             });
 
-            // Initial render
             renderTable('all');
             renderGallery();
         })();
